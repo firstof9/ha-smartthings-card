@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+smartthings-card.js
+smartthings-card.js.map
+.DS_Store
+.node/
