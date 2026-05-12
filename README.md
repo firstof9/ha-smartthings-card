@@ -71,6 +71,8 @@ This card supports Home Assistant themes and uses standard CSS variables for sty
 
 ## Assets
 
+Images are generated via a build script into the `images/` directory of this repository. When installed via HACS, these images are automatically mapped and accessible at `/local/community/ha-smartthings-card/images/`.
+
 ## Development
 
 1. Install dependencies: `npm install`
