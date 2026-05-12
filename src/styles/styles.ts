@@ -273,7 +273,7 @@ export const styles = css`
     gap: 4px;
   }
   .job-icon {
-    width: 60px;
+    width: 80px;
     height: auto;
     image-rendering: pixelated;
     opacity: 0.2;

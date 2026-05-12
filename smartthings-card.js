@@ -271,7 +271,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
     gap: 4px;
   }
   .job-icon {
-    width: 60px;
+    width: 80px;
     height: auto;
     image-rendering: pixelated;
     opacity: 0.2;
