@@ -18,6 +18,9 @@ autolabeler:
   - label: "code-quality"
     title:
       - "/tests:/i"
+  - label: "ci"
+    title:
+      - "/ci:/i"
   - label: "dependencies"
     title:
       - "/build(deps):/i"
@@ -39,6 +42,7 @@ categories:
   - title: "🔧 Maintenance 🔧"
     labels:
       - "chore"
+      - "ci"
     collapse-after: 3
   - title: "🎓 Code Quality 🎓"
     labels:
