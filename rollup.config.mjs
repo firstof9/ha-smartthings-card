@@ -1,6 +1,8 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
+import image from '@rollup/plugin-image';
+import json from '@rollup/plugin-json';
 
 const dev = process.env.ROLLUP_WATCH === 'true';
 
@@ -12,11 +14,13 @@ export default {
     sourcemap: dev,
   },
   plugins: [
+    json(),
     resolve(),
     typescript({
       tsconfig: './tsconfig.json',
       compilerOptions: { noEmit: false, declaration: false },
     }),
+    image(),
     !dev && terser({ format: { comments: false } }),
   ].filter(Boolean),
 };

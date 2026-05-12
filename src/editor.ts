@@ -4,7 +4,7 @@ import { HomeAssistant, SmartthingsCardConfig } from './types';
 
 @customElement('smartthings-card-editor')
 export class SmartthingsCardEditor extends LitElement {
-  @property({ attribute: false }) public hass!: HomeAssistant;
+  @property({ attribute: false }) public hass?: HomeAssistant;
 
   @state() private _config?: SmartthingsCardConfig;
 
@@ -12,56 +12,221 @@ export class SmartthingsCardEditor extends LitElement {
     this._config = config;
   }
 
-  protected render(): TemplateResult {
+  private _schema() {
+    const deviceId = this._config?.device_id;
+    
+    const baseSchema = [
+      {
+        name: 'device_id',
+        label: 'SmartThings Device',
+        selector: { device: { integration: 'smartthings' } },
+      },
+      {
+        name: 'power_entity',
+        label: 'Power Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings' } },
+      },
+      {
+        name: 'machine_state_entity',
+        label: 'Machine State Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings' } },
+      },
+    ];
+
+    const secondaryIconsSchema = [
+      {
+        name: 'wifi_entity',
+        label: 'WiFi Status Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['binary_sensor', 'switch'] } },
+      },
+      {
+        name: 'lock_entity',
+        label: 'Child Lock Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['binary_sensor', 'switch'] } },
+      },
+    ];
+
+    const refrigeratorSchema = [
+      {
+        name: 'fridge_temp_entity',
+        label: 'Fridge Temperature Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['sensor', 'number', 'select'] } },
+      },
+      {
+        name: 'freezer_temp_entity',
+        label: 'Freezer Temperature Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['sensor', 'number', 'select'] } },
+      },
+      {
+        name: 'door_entities',
+        label: 'Door Sensors (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: 'binary_sensor', multiple: true } },
+      },
+      {
+        name: 'ice_maker_entity',
+        label: 'Ice Maker Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['switch', 'input_boolean'] } },
+      },
+      {
+        name: 'filter_status_entity',
+        label: 'Water Filter Usage Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: 'sensor' } },
+      },
+      {
+        name: 'filter_reset_entity',
+        label: 'Filter Reset Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['button', 'switch', 'input_button'] } },
+      },
+    ];
+
+    const commonApplianceSchema = [
+      {
+        name: 'mode_entity',
+        label: 'Mode Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings' } },
+      },
+      {
+        name: 'job_state_entity',
+        label: 'Job State Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings' } },
+      },
+      {
+        name: 'time_entity',
+        label: 'Time Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: 'sensor' } },
+      },
+    ];
+
+    const footerSchema = [
+      { name: 'bg_image', label: 'Background Image Path', selector: { text: {} } },
+      { name: 'default_image', label: 'Default Icon Path', selector: { text: {} } },
+    ];
+
+    let finalSchema: any[] = [...baseSchema];
+
+    if (this._config?.appliance_type === 'refrigerator') {
+      finalSchema = finalSchema.concat(refrigeratorSchema);
+    } else {
+      finalSchema = finalSchema.concat(commonApplianceSchema).concat(secondaryIconsSchema);
+    }
+
+    return finalSchema.concat(footerSchema);
+  }
+
+  protected override render(): TemplateResult {
     if (!this.hass || !this._config) {
       return html``;
     }
 
     return html`
-      <div class="card-config">
-        <paper-input
-          label="Name (Optional)"
-          .value=${this._config.name}
-          .configValue=${'name'}
-          @value-changed=${this._valueChanged}
-        ></paper-input>
-        <ha-entity-picker
-          .label=${'Entity (Optional)'}
-          .hass=${this.hass}
-          .value=${this._config.entity}
-          .configValue=${'entity'}
-          @value-changed=${this._valueChanged}
-          allow-custom-entity
-        ></ha-entity-picker>
-      </div>
+      <ha-form
+        .hass=${this.hass}
+        .data=${this._config}
+        .schema=${this._schema()}
+        .computeLabel=${(s: any) => s.label || s.name}
+        @value-changed=${this._valueChanged}
+      ></ha-form>
     `;
   }
 
-  private _valueChanged(ev: any): void {
+  private _valueChanged(ev: CustomEvent): void {
     if (!this._config || !this.hass) {
       return;
     }
-    const target = ev.target;
-    if (this[`_${target.configValue}`] === target.value) {
-      return;
+
+    const value = ev.detail.value;
+    let newConfig = { ...value };
+
+    if (this._config.device_id !== value.device_id) {
+      // Device changed, reset and try to autofill
+      // Start fresh but preserve the basic info
+      newConfig = {
+        type: value.type,
+        device_id: value.device_id,
+        appliance_type: this._config.appliance_type || value.appliance_type,
+      } as SmartthingsCardConfig;
+      
+      newConfig = this._autofillConfig(newConfig);
     }
-    if (target.configValue) {
-      if (target.value === '') {
-        const tmpConfig = { ...this._config };
-        delete tmpConfig[target.configValue];
-        this._config = tmpConfig;
-      } else {
-        this._config = {
-          ...this._config,
-          [target.configValue]: target.checked !== undefined ? target.checked : target.value,
-        };
+
+    this._config = newConfig;
+
+    this.dispatchEvent(
+      new CustomEvent('config-changed', {
+        detail: { config: this._config },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
+  private _autofillConfig(config: SmartthingsCardConfig): SmartthingsCardConfig {
+    if (!this.hass) return config;
+
+    const deviceId = config.device_id;
+    const entities = Object.keys(this.hass.states);
+    let newConfig = { ...config };
+
+    // Filter entities by device_id if provided
+    const deviceEntities = deviceId 
+      ? entities.filter(id => (this.hass as any).entities?.[id]?.device_id === deviceId)
+      : entities;
+
+    // If no device-specific entities found (e.g. registry not loaded), fall back to all
+    const relevantEntities = deviceEntities.length > 0 ? deviceEntities : entities;
+
+    // 1. Detect Appliance Type if not set or if device changed
+    if (deviceId) {
+      const allText = relevantEntities.map(id => id + ' ' + (this.hass!.states[id].attributes.friendly_name || '')).join(' ').toLowerCase();
+      
+      if (allText.includes('refrigerator') || allText.includes('fridge') || allText.includes('freezer')) {
+        newConfig.appliance_type = 'refrigerator';
+      } else if (allText.includes('dishwasher')) {
+        newConfig.appliance_type = 'dishwasher';
+      } else if (allText.includes('washer')) {
+        newConfig.appliance_type = 'washer';
+      } else if (allText.includes('dryer')) {
+        newConfig.appliance_type = 'dryer';
+      } else if (allText.includes('microwave')) {
+        newConfig.appliance_type = 'microwave';
+      } else if (allText.includes('oven')) {
+        newConfig.appliance_type = 'oven';
       }
     }
-    const event = new CustomEvent('config-changed', {
-      detail: { config: this._config },
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
+
+    const type = newConfig.appliance_type;
+    if (!type) return newConfig;
+
+    // 2. Helper to find a specific entity
+    const findEntity = (suffixes: string[], domain?: string) => {
+      return relevantEntities.find((id) => {
+        const entityId = id.toLowerCase();
+        const matchesSuffix = suffixes.some((s) => entityId.includes(s));
+        const matchesDomain = !domain || id.startsWith(domain + '.');
+        return matchesSuffix && matchesDomain;
+      });
+    };
+
+    // 3. Autofill logic
+    newConfig.power_entity = newConfig.power_entity || findEntity(['_switch', '_power'], 'switch') || findEntity(['_power'], 'binary_sensor');
+    newConfig.machine_state_entity = newConfig.machine_state_entity || findEntity(['_machine_state', '_state']);
+    newConfig.job_state_entity = newConfig.job_state_entity || findEntity(['_job_state']);
+    newConfig.time_entity = newConfig.time_entity || findEntity(['_time_remaining', '_time_left'], 'sensor');
+    newConfig.wifi_entity = newConfig.wifi_entity || findEntity(['_wifi'], 'binary_sensor');
+    newConfig.lock_entity = newConfig.lock_entity || findEntity(['_lock', '_child_lock']);
+
+    if (type === 'refrigerator') {
+      newConfig.fridge_temp_entity = newConfig.fridge_temp_entity || findEntity(['_fridge_temp', '_refrigerator_temp']);
+      newConfig.freezer_temp_entity = newConfig.freezer_temp_entity || findEntity(['_freezer_temp']);
+      newConfig.ice_maker_entity = newConfig.ice_maker_entity || findEntity(['_ice_maker']);
+      newConfig.filter_reset_entity = newConfig.filter_reset_entity || findEntity(['_filter_reset', '_reset_water_filter', '_water_filter_reset'], 'button') || findEntity(['_filter_reset', '_reset_water_filter', '_water_filter_reset'], 'switch');
+      
+      const doors = relevantEntities.filter(id => id.includes('_door') && id.startsWith('binary_sensor.'));
+      if (doors.length > 0 && (!newConfig.door_entities || newConfig.door_entities.length === 0)) {
+        newConfig.door_entities = doors;
+      }
+    }
+
+    return newConfig;
   }
 }

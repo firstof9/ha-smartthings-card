@@ -30,8 +30,21 @@ lovelace:
 | Name | Type | Requirement | Description |
 | --- | --- | --- | --- |
 | type | string | **Required** | `custom:smartthings-card` |
-| entity | string | **Optional** | The entity ID to display. |
+| appliance_type | string | **Optional** | `microwave`, `oven`, `dishwasher`, `washer`. Defaults to `microwave`. |
+| power_entity | string | **Optional** | The entity ID for power state. |
+| mode_entity | string | **Required** | The entity ID for the current mode. |
+| time_entity | string | **Optional** | The entity ID for time remaining. |
 | name | string | **Optional** | Overrides the header title. |
+
+## Assets
+
+Deposit your appliance-specific images in the `images/` directory of this repository:
+
+- `images/<appliance_type>/bg.png`: The background image for the appliance.
+- `images/<appliance_type>/off.png`: The default "off" or "idle" icon.
+- `images/<appliance_type>/<mode>.png`: Icon for a specific mode (e.g., `bake.png`).
+
+When installed via HACS, these images are accessible at `/local/community/ha-smartthings-card/images/`.
 
 ## Development
 
