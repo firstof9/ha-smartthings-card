@@ -11,6 +11,9 @@ on:
 
 jobs:
   update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: read
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@c2e2804cc59f45f57076a99af580d0fedb697927 # @v7
