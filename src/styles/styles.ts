@@ -3,9 +3,6 @@ import { css } from 'lit';
 export const styles = css`
   ha-card {
     overflow: hidden;
-    background: transparent;
-    border: none;
-    box-shadow: none;
   }
   .container {
     position: relative;
