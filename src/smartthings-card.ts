@@ -94,16 +94,16 @@ export class SmartthingsCard extends LitElement {
   }
 
   private _formatCountdown(timeStr: string): string {
-    if (!timeStr) return '--:--:--';
+    if (!timeStr || ['unavailable', 'unknown'].includes(timeStr.toLowerCase())) return '--:--:--';
     // If it's already a duration string like "00:10:00", just return it
     if (/^\d{1,2}:\d{2}(:\d{2})?$/.test(timeStr)) {
       return timeStr;
     }
 
     const targetTime = new Date(timeStr).getTime();
-    // If invalid date, return the original string
+    // If invalid date, return '--:--:--'
     if (isNaN(targetTime)) {
-      return timeStr;
+      return '--:--:--';
     }
 
     const diff = targetTime - this._currentTime;
@@ -145,7 +145,8 @@ export class SmartthingsCard extends LitElement {
     const isJobIdle = ['none', 'others', 'off', 'unknown', 'unavailable', 'idle'].includes(rawJobState);
     
     const activeMode = (isJobIdle && this.config.appliance_type === 'microwave') ? rawModeState : rawJobState;
-    const timeState = timeStateObj ? this._formatCountdown(timeStateObj.state) : '--:--:--';
+    const isPoweredOff = powerStateObj?.state === 'off';
+    const timeState = (timeStateObj && !isPoweredOff) ? this._formatCountdown(timeStateObj.state) : '--:--:--';
 
     // Base paths
     const bgImg = `hass-samsung-${this.config.appliance_type}-card-bg-black.png`;
