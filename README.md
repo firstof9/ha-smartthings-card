@@ -2,16 +2,19 @@
 
 A custom Home Assistant card for Smartthings devices.
 
-![Logo](https://raw.githubusercontent.com/firstof9/ha-smartthings-card/main/screenshots/logo.png)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository=https://github.com/firstof9/ha-smartthings-card&category=Lovelace)
+
+![Preview](https://raw.githubusercontent.com/firstof9/ha-smartthings-card/main/screenshots/smartthings_card.gif)
 
 ## Installation
 
 ### HACS (Recommended)
 
-1. Go to HACS -> Frontend
-2. Click on the three dots in the top right corner and select "Custom repositories"
-3. Add `https://github.com/firstof9/ha-smartthings-card` as a "Lovelace" repository
-4. Click "Install"
+1. Click the badge above or:
+2. Go to HACS -> Frontend
+3. Click on the three dots in the top right corner and select "Custom repositories"
+4. Add `https://github.com/firstof9/ha-smartthings-card` as a "Lovelace" repository
+5. Click "Install"
 
 ### Manual
 
