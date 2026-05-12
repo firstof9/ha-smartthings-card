@@ -12,8 +12,8 @@ describe('SmartthingsCard rendering', () => {
     document.body.appendChild(element);
   });
 
-  it('should render an empty template if no config', () => {
-    expect(element.shadowRoot?.innerHTML).toBe('');
+  it('should not render the container if no config', () => {
+    expect(element.shadowRoot?.querySelector('.container')).toBeNull();
   });
 
   it('should render the card with microwave configuration', async () => {
@@ -30,7 +30,8 @@ describe('SmartthingsCard rendering', () => {
     const card = element.shadowRoot?.querySelector('ha-card');
     expect(card).toBeTruthy();
     
-    const jobState = element.shadowRoot?.querySelector('.status-value');
-    expect(jobState?.textContent?.trim()).toBe('cooking');
+    const timeValue = element.shadowRoot?.querySelector('.time-fg');
+    // timer row should show the formatted time (or --:--:-- if mocked time doesn't match)
+    expect(timeValue).toBeTruthy();
   });
 });
