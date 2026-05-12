@@ -29,9 +29,9 @@ export const styles = css`
   .time-fg {
     position: absolute;
     font-family: 'segment7', monospace;
-    font-size: 50px;
+    font-size: 38px;
     left: 95%;
-    top: 74%;
+    top: 68%;
     transform: translate(-100%, -50%);
     white-space: nowrap;
   }
@@ -264,7 +264,7 @@ export const styles = css`
   .job-icon {
     position: absolute;
     top: 33%;
-    width: 20%;
+    width: 16%;
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
     opacity: 0.2;
@@ -274,7 +274,7 @@ export const styles = css`
   .job-icon.active {
     opacity: 1;
     filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 
   /* Secondary Icons (WiFi, Lock) */
@@ -301,11 +301,10 @@ export const styles = css`
   /* Microwave Controls */
   .microwave-controls {
     position: absolute;
-    bottom: 5%;
-    left: 2%;
-    width: 96%;
+    bottom: 8%;
+    right: 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     pointer-events: auto;
     z-index: 1;
@@ -313,10 +312,10 @@ export const styles = css`
   .control-group {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     background: rgba(0, 0, 0, 0.4);
-    padding: 5px 12px;
-    border-radius: 20px;
+    padding: 4px 10px;
+    border-radius: 16px;
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
