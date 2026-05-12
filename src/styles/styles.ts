@@ -44,7 +44,7 @@ export const styles = css`
   .time-bg,
   .time-fg {
     font-family: 'segment7', monospace;
-    font-size: clamp(35px, 8vw, 50px);
+    font-size: clamp(40px, 8vw, 50px);
     white-space: nowrap;
   }
   .time-bg {
@@ -278,16 +278,14 @@ export const styles = css`
   }
   .job-icon {
     position: absolute;
-    top: 20%;
+    top: 23%;
     width: 18%;
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
-    opacity: 0.2;
     filter: grayscale(1);
     transition: all 0.5s ease;
   }
   .job-icon.active {
-    opacity: 1;
     filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
     transform: translate(-50%, -50%) scale(1.05);
   }
@@ -306,11 +304,9 @@ export const styles = css`
     top: 73%;
     width: 10%;
     transform: translate(-50%, -50%);
-    opacity: 0.3;
     transition: opacity 0.3s ease;
   }
   .secondary-icon.active {
-    opacity: 1;
   }
 
   /* Microwave Controls */
