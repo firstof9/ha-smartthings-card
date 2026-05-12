@@ -191,14 +191,15 @@ export class SmartthingsCard extends LitElement {
             : ''}
           ${fanStateObj
             ? html`
-                <div class="fan-control ${fanStateObj.state !== 'off' ? 'on' : ''}">
+                <div class="fan-control ${fanStateObj.state !== '0' && fanStateObj.state !== 'off' ? 'on' : ''}">
                   <ha-icon icon="mdi:fan"></ha-icon>
                   <input
                     type="range"
                     class="fan-slider"
                     min="0"
-                    max="100"
-                    .value=${fanStateObj.attributes.percentage || 0}
+                    max="2"
+                    step="1"
+                    .value=${fanStateObj.state}
                     @change=${this._handleFanSpeed}
                   />
                 </div>
@@ -220,10 +221,18 @@ export class SmartthingsCard extends LitElement {
   private _handleFanSpeed(ev: Event): void {
     const value = (ev.target as HTMLInputElement).value;
     if (!this.hass || !this.config.fan_entity) return;
-    this.hass.callService('fan', 'set_percentage', {
-      entity_id: this.config.fan_entity,
-      percentage: parseInt(value, 10),
-    });
+    
+    const domain = this.config.fan_entity.split('.')[0];
+    const service = domain === 'number' ? 'set_value' : 'set_percentage';
+    const data: Record<string, any> = { entity_id: this.config.fan_entity };
+    
+    if (domain === 'number') {
+      data.value = value;
+    } else {
+      data.percentage = parseInt(value, 10);
+    }
+
+    this.hass.callService(domain, service, data);
   }
 
   private _renderJobStates(activeMode: string): TemplateResult | void {
