@@ -424,7 +424,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
                 style="left: 32%"
               />
             `:""}
-        ${g?H`
+        ${g&&"microwave"!==I?H`
               <img
                 class="secondary-icon lock ${"on"===g.state?"active":""}"
                 src="${this._getAsset(I,"on"===g.state?"lock-on.png":"lock.png")}"

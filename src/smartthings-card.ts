@@ -347,7 +347,7 @@ export class SmartthingsCard extends LitElement {
               />
             `
           : ''}
-        ${lockState
+        ${lockState && appliance !== 'microwave'
           ? html`
               <img
                 class="secondary-icon lock ${lockState.state === 'on' ? 'active' : ''}"
