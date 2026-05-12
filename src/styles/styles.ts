@@ -367,4 +367,11 @@ export const styles = css`
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
+  .fan-control.on ha-icon {
+    animation: spin 2s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 `;
