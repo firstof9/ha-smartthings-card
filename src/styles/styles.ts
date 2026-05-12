@@ -29,10 +29,12 @@ export const styles = css`
   .right-panel {
     position: absolute;
     right: 5%;
+    top: 0;
     bottom: 5%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    justify-content: flex-end;
     gap: 6px;
   }
   .timer-row {
