@@ -273,14 +273,19 @@ export const styles = css`
     justify-content: center;
     align-self: center;
     gap: 4px;
+    flex-shrink: 1;
+    min-height: 0;
+    overflow: hidden;
   }
   .job-icon {
     width: 80px;
+    max-height: 100%;
     height: auto;
     image-rendering: pixelated;
     opacity: 0.2;
     filter: grayscale(1);
     transition: all 0.5s ease;
+    object-fit: contain;
   }
   .job-icon.active {
     opacity: 1;
