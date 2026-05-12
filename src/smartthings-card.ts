@@ -389,9 +389,9 @@ export class SmartthingsCard extends LitElement {
 
   private _getFilterColor(state: string): string {
     const usage = parseFloat(state);
-    if (usage < 50) return '#4caf50'; // Green — plenty of life left
-    if (usage < 80) return '#ff9800'; // Orange — order soon
-    return '#f44336'; // Red — replace now
+    if (usage < 50) return 'var(--success-color, #4caf50)'; // Green — plenty of life left
+    if (usage < 80) return 'var(--warning-color, #ff9800)'; // Orange — order soon
+    return 'var(--error-color, #f44336)'; // Red — replace now
   }
 
   private _resetFilter(): void {
