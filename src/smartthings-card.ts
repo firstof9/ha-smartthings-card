@@ -80,6 +80,8 @@ export class SmartthingsCard extends LitElement {
         this.config.filter_reset_entity,
         this.config.wifi_entity,
         this.config.lock_entity,
+        this.config.fan_entity,
+        this.config.light_entity,
         ...(this.config.door_entities || []),
       ].filter(Boolean) as string[];
 
@@ -162,12 +164,66 @@ export class SmartthingsCard extends LitElement {
           <img class="bg" src="${bgSrc}" @error=${this._handleImageError} />
 
           ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
+          ${this.config.appliance_type === 'microwave' ? this._renderMicrowaveControls() : ''}
 
           <div class="time-bg">88:88:88</div>
           <div class="time-fg">${timeState}</div>
         </div>
       </ha-card>
     `;
+  }
+
+  private _renderMicrowaveControls(): TemplateResult | void {
+    const fanStateObj = this.config.fan_entity ? this.hass.states[this.config.fan_entity] : null;
+    const lightStateObj = this.config.light_entity ? this.hass.states[this.config.light_entity] : null;
+
+    if (!fanStateObj && !lightStateObj) return;
+
+    return html`
+      <div class="microwave-controls">
+        <div class="control-group">
+          ${lightStateObj
+            ? html`
+                <div class="light-control ${lightStateObj.state === 'on' ? 'on' : ''}" @click=${this._toggleLight}>
+                  <ha-icon icon="${lightStateObj.state === 'on' ? 'mdi:lightbulb' : 'mdi:lightbulb-outline'}"></ha-icon>
+                </div>
+              `
+            : ''}
+          ${fanStateObj
+            ? html`
+                <div class="fan-control ${fanStateObj.state !== 'off' ? 'on' : ''}">
+                  <ha-icon icon="mdi:fan"></ha-icon>
+                  <input
+                    type="range"
+                    class="fan-slider"
+                    min="0"
+                    max="100"
+                    .value=${fanStateObj.attributes.percentage || 0}
+                    @change=${this._handleFanSpeed}
+                  />
+                </div>
+              `
+            : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  private _toggleLight(): void {
+    if (!this.hass || !this.config.light_entity) return;
+    const state = this.hass.states[this.config.light_entity].state;
+    this.hass.callService('light', state === 'on' ? 'turn_off' : 'turn_on', {
+      entity_id: this.config.light_entity,
+    });
+  }
+
+  private _handleFanSpeed(ev: Event): void {
+    const value = (ev.target as HTMLInputElement).value;
+    if (!this.hass || !this.config.fan_entity) return;
+    this.hass.callService('fan', 'set_percentage', {
+      entity_id: this.config.fan_entity,
+      percentage: parseInt(value, 10),
+    });
   }
 
   private _renderJobStates(activeMode: string): TemplateResult | void {

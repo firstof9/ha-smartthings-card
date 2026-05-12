@@ -43,6 +43,8 @@ For manual YAML configuration:
 | `time_entity` | string | **Optional** | The entity ID for completion time or time remaining (supports live countdown). |
 | `wifi_entity` | string | **Optional** | The entity ID for WiFi connection status. |
 | `lock_entity` | string | **Optional** | The entity ID for child lock status. |
+| `fan_entity` | string | **Optional** | The entity ID for the microwave fan (supports slider if percentage is available). |
+| `light_entity` | string | **Optional** | The entity ID for the microwave light toggle. |
 
 ### Refrigerator Specific Options
 | Name | Type | Requirement | Description |

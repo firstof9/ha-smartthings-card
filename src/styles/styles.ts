@@ -297,4 +297,64 @@ export const styles = css`
   .secondary-icon.active {
     opacity: 1;
   }
+
+  /* Microwave Controls */
+  .microwave-controls {
+    position: absolute;
+    bottom: 5%;
+    left: 2%;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 1;
+  }
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .light-control {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--secondary-text-color, #888);
+    transition: all 0.3s ease;
+  }
+  .light-control.on {
+    color: var(--accent-color, #ff9800);
+    filter: drop-shadow(0 0 5px var(--accent-color, #ff9800));
+  }
+  .fan-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--secondary-text-color, #888);
+  }
+  .fan-control.on {
+    color: var(--accent-color, #ff9800);
+  }
+  .fan-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+  }
+  .fan-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-color, #ff9800);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
 `;
