@@ -43,8 +43,6 @@ For manual YAML configuration:
 | `time_entity` | string | **Optional** | The entity ID for completion time or time remaining (supports live countdown). |
 | `wifi_entity` | string | **Optional** | The entity ID for WiFi connection status. |
 | `lock_entity` | string | **Optional** | The entity ID for child lock status. |
-| `fan_entity` | string | **Optional** | The entity ID for the microwave fan (supports slider if percentage is available). |
-| `light_entity` | string | **Optional** | The entity ID for the microwave light toggle. |
 
 ### Refrigerator Specific Options
 | Name | Type | Requirement | Description |
@@ -55,6 +53,12 @@ For manual YAML configuration:
 | `ice_maker_entity` | string | **Optional** | The entity ID for the ice maker switch. |
 | `filter_status_entity`| string | **Optional** | The entity ID for the water filter usage/health percentage. |
 | `filter_reset_entity` | string | **Optional** | The entity ID for a button to reset the water filter. |
+
+### Microwave Specific Options
+| Name | Type | Requirement | Description |
+| --- | --- | --- | --- |
+| `fan_entity` | string | **Optional** | The entity ID for the microwave fan (supports slider for `fan` or `number` entities). |
+| `light_entity` | string | **Optional** | The entity ID for the microwave light toggle. |
 
 ## Themes
 
