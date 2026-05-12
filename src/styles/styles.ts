@@ -25,20 +25,33 @@ export const styles = css`
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
   }
+  /* Right Panel — stacks timer + controls vertically */
+  .right-panel {
+    position: absolute;
+    right: 5%;
+    top: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .timer-row {
+    position: relative;
+    white-space: nowrap;
+  }
   .time-bg,
   .time-fg {
-    position: absolute;
     font-family: 'segment7', monospace;
     font-size: 50px;
-    left: 93%;
-    top: 65%;
-    transform: translate(-100%, -50%);
     white-space: nowrap;
   }
   .time-bg {
     color: var(--divider-color, #333);
   }
   .time-fg {
+    position: absolute;
+    top: 0;
+    left: 0;
     color: var(--accent-color, #ff9800);
   }
 
@@ -300,14 +313,10 @@ export const styles = css`
 
   /* Microwave Controls */
   .microwave-controls {
-    position: absolute;
-    bottom: 8%;
-    right: 5%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     pointer-events: auto;
-    z-index: 1;
   }
   .control-group {
     display: flex;

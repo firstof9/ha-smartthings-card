@@ -164,10 +164,14 @@ export class SmartthingsCard extends LitElement {
           <img class="bg" src="${bgSrc}" @error=${this._handleImageError} />
 
           ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
-          ${this.config.appliance_type === 'microwave' ? this._renderMicrowaveControls() : ''}
 
-          <div class="time-bg">88:88:88</div>
-          <div class="time-fg">${timeState}</div>
+          <div class="right-panel">
+            <div class="timer-row">
+              <div class="time-bg">88:88:88</div>
+              <div class="time-fg">${timeState}</div>
+            </div>
+            ${this.config.appliance_type === 'microwave' ? this._renderMicrowaveControls() : ''}
+          </div>
         </div>
       </ha-card>
     `;
