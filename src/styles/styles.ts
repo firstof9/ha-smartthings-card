@@ -29,7 +29,7 @@ export const styles = css`
   .right-panel {
     position: absolute;
     right: 5%;
-    top: 55%;
+    bottom: 5%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

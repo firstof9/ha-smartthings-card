@@ -27,7 +27,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
   .right-panel {
     position: absolute;
     right: 5%;
-    top: 55%;
+    bottom: 5%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
