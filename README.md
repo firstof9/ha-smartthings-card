@@ -54,6 +54,21 @@ For manual YAML configuration:
 | `filter_status_entity`| string | **Optional** | The entity ID for the water filter usage/health percentage. |
 | `filter_reset_entity` | string | **Optional** | The entity ID for a button to reset the water filter. |
 
+## Themes
+
+This card supports Home Assistant themes and uses standard CSS variables for styling. You can customize the look of the card by modifying these variables in your theme:
+
+| CSS Variable | Description | Default |
+| --- | --- | --- |
+| `--accent-color` | Color for active values, primary highlights, and active buttons. | `#ff9800` |
+| `--primary-text-color` | Color for primary text elements. | Theme default |
+| `--secondary-text-color` | Color for labels and secondary information. | `#888` |
+| `--divider-color` | Color for background "segment" digit placeholders. | `#333` |
+| `--ha-card-background` | Background color for control boxes. | `var(--card-background-color)` |
+| `--success-color` | Color for healthy filter status (usage < 50%). | `#4caf50` |
+| `--warning-color` | Color for filter warning state (usage 50-80%). | `#ff9800` |
+| `--error-color` | Color for filter replacement state (usage > 80%). | `#f44336` |
+
 ## Assets
 
 Images are generated via a build script into the `images/` directory of this repository. When installed via HACS, these images are automatically mapped and accessible at `/local/community/ha-smartthings-card/images/`.

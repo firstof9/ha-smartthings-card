@@ -36,7 +36,7 @@ export const styles = css`
     white-space: nowrap;
   }
   .time-bg {
-    color: #333;
+    color: var(--divider-color, #333);
   }
   .time-fg {
     color: var(--accent-color, #ff9800);
@@ -73,7 +73,7 @@ export const styles = css`
   .refrigerator .freezer-value { left: 57%; }
 
   .refrigerator .fridge-value-bg,
-  .refrigerator .freezer-value-bg { color: #333; }
+  .refrigerator .freezer-value-bg { color: var(--divider-color, #333); }
   .refrigerator .fridge-value,
   .refrigerator .freezer-value { color: var(--accent-color, #ff9800); }
 
@@ -85,7 +85,7 @@ export const styles = css`
     display: flex;
     flex-direction: column;
     gap: 4px;
-    color: #888;
+    color: var(--secondary-text-color, #888);
   }
   .filter-label-row {
     display: flex;
@@ -187,7 +187,7 @@ export const styles = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--ha-card-background, var(--card-background-color, rgba(0, 0, 0, 0.6)));
     padding: 8px 12px;
     border-radius: 10px;
     cursor: pointer;
@@ -200,8 +200,8 @@ export const styles = css`
     background: rgba(255, 152, 0, 0.1);
   }
   .control-box.off {
-    color: #666;
-    background: rgba(0, 0, 0, 0.3);
+    color: var(--secondary-text-color, #666);
+    background: var(--ha-card-background, var(--card-background-color, rgba(0, 0, 0, 0.3)));
   }
   .control-box .label {
     font-size: 9px;
