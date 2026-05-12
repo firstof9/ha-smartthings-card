@@ -282,6 +282,11 @@ export const styles = css`
     filter: grayscale(1);
     transition: all 0.5s ease;
   }
+  .washer .job-icon,
+  .dryer .job-icon,
+  .dishwasher .job-icon {
+    top: 33%;
+  }
   .job-icon.active {
     filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
     transform: translate(-50%, -50%) scale(1.05);
