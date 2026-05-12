@@ -16,7 +16,9 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test test/*.test.ts"
+    "test": "vitest",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage"
   },
   "author": "firstof9",
   "license": "MIT",
@@ -27,10 +29,13 @@
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.1.0",
     "@types/node": "^25.6.2",
+    "@vitest/coverage-v8": "^1.6.0",
+    "jsdom": "^24.0.0",
     "rollup": "^4.18.0",
     "tslib": "^2.6.0",
     "tsx": "^4.20.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "lit": "^3.2.0"
