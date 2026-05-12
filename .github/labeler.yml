@@ -1,0 +1,29 @@
+# Rules for automatically labeling Pull Requests based on files changed
+
+feature:
+  - changed-files:
+    - any-glob-to-any-file: 'src/**/*'
+
+style:
+  - changed-files:
+    - any-glob-to-any-file: 'src/styles/**/*'
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'README.md'
+      - 'images/**/*'
+      - 'screenshots/**/*'
+
+ci:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**/*'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'rollup.config.mjs'
+
+code-quality:
+  - changed-files:
+    - any-glob-to-any-file: 'test/**/*'
