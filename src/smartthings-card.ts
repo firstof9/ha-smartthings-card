@@ -201,7 +201,7 @@ export class SmartthingsCard extends LitElement {
                     type="range"
                     class="fan-slider"
                     min="0"
-                    max="2"
+                    max=${fanStateObj.attributes.maximum ?? 2}
                     step="1"
                     .value=${fanStateObj.state}
                     @change=${this._handleFanSpeed}
