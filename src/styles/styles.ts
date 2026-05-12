@@ -30,7 +30,7 @@ export const styles = css`
     position: absolute;
     font-family: 'segment7', monospace;
     font-size: 50px;
-    left: 95%;
+    left: 93%;
     top: 65%;
     transform: translate(-100%, -50%);
     white-space: nowrap;
