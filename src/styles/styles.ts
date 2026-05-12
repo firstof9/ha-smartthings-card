@@ -280,6 +280,7 @@ export const styles = css`
   }
   .job-icon {
     width: 80px;
+    min-width: 60px;
     max-height: 100%;
     height: auto;
     image-rendering: pixelated;
@@ -287,6 +288,7 @@ export const styles = css`
     filter: grayscale(1);
     transition: all 0.5s ease;
     object-fit: contain;
+    flex-shrink: 0;
   }
   .job-icon.active {
     opacity: 1;
