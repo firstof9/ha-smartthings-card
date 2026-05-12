@@ -54,6 +54,12 @@ For manual YAML configuration:
 | `filter_status_entity`| string | **Optional** | The entity ID for the water filter usage/health percentage. |
 | `filter_reset_entity` | string | **Optional** | The entity ID for a button to reset the water filter. |
 
+### Microwave Specific Options
+| Name | Type | Requirement | Description |
+| --- | --- | --- | --- |
+| `fan_entity` | string | **Optional** | The entity ID for the microwave fan (supports slider for `fan` or `number` entities). |
+| `light_entity` | string | **Optional** | The entity ID for the microwave light toggle. |
+
 ## Themes
 
 This card supports Home Assistant themes and uses standard CSS variables for styling. You can customize the look of the card by modifying these variables in your theme:

@@ -97,6 +97,19 @@ export class SmartthingsCardEditor extends LitElement {
       },
     ];
 
+    const microwaveSchema = [
+      {
+        name: 'fan_entity',
+        label: 'Fan Control Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: ['fan', 'number', 'select'] } },
+      },
+      {
+        name: 'light_entity',
+        label: 'Light Control Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: 'light' } },
+      },
+    ];
+
     const footerSchema = [
       { name: 'bg_image', label: 'Background Image Path', selector: { text: {} } },
       { name: 'default_image', label: 'Default Icon Path', selector: { text: {} } },
@@ -106,6 +119,8 @@ export class SmartthingsCardEditor extends LitElement {
 
     if (this._config?.appliance_type === 'refrigerator') {
       finalSchema = finalSchema.concat(refrigeratorSchema);
+    } else if (this._config?.appliance_type === 'microwave') {
+      finalSchema = finalSchema.concat(commonApplianceSchema).concat(secondaryIconsSchema).concat(microwaveSchema);
     } else {
       finalSchema = finalSchema.concat(commonApplianceSchema).concat(secondaryIconsSchema);
     }
@@ -214,6 +229,8 @@ export class SmartthingsCardEditor extends LitElement {
     newConfig.time_entity = newConfig.time_entity || findEntity(['_time_remaining', '_time_left'], 'sensor');
     newConfig.wifi_entity = newConfig.wifi_entity || findEntity(['_wifi'], 'binary_sensor');
     newConfig.lock_entity = newConfig.lock_entity || findEntity(['_lock', '_child_lock']);
+    newConfig.fan_entity = newConfig.fan_entity || findEntity(['_fan'], 'fan') || findEntity(['_fan_speed'], 'number');
+    newConfig.light_entity = newConfig.light_entity || findEntity(['_light'], 'light');
 
     if (type === 'refrigerator') {
       newConfig.fridge_temp_entity = newConfig.fridge_temp_entity || findEntity(['_fridge_temp', '_refrigerator_temp']);

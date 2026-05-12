@@ -31,6 +31,8 @@ export interface SmartthingsCardConfig {
   filter_reset_entity?: string;
   wifi_entity?: string;
   lock_entity?: string;
+  fan_entity?: string;
+  light_entity?: string;
   default_image?: string;
   bg_image?: string;
   state_images?: Record<string, string>;

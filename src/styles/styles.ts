@@ -3,9 +3,6 @@ import { css } from 'lit';
 export const styles = css`
   ha-card {
     overflow: hidden;
-    background: transparent;
-    border: none;
-    box-shadow: none;
   }
   .container {
     position: relative;
@@ -25,20 +22,35 @@ export const styles = css`
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
   }
+  /* Right Panel — stacks timer + controls vertically */
+  .right-panel {
+    position: absolute;
+    right: 5%;
+    top: 0;
+    bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 2px;
+  }
+  .timer-row {
+    position: relative;
+    white-space: nowrap;
+  }
   .time-bg,
   .time-fg {
-    position: absolute;
     font-family: 'segment7', monospace;
-    font-size: 50px;
-    left: 95%;
-    top: 74%;
-    transform: translate(-100%, -50%);
+    font-size: clamp(40px, 8vw, 50px);
     white-space: nowrap;
   }
   .time-bg {
     color: var(--divider-color, #333);
   }
   .time-fg {
+    position: absolute;
+    top: 0;
+    left: 0;
     color: var(--accent-color, #ff9800);
   }
 
@@ -263,18 +275,16 @@ export const styles = css`
   }
   .job-icon {
     position: absolute;
-    top: 33%;
-    width: 20%;
+    top: 23%;
+    width: 18%;
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
-    opacity: 0.2;
     filter: grayscale(1);
     transition: all 0.5s ease;
   }
   .job-icon.active {
-    opacity: 1;
     filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 
   /* Secondary Icons (WiFi, Lock) */
@@ -291,10 +301,63 @@ export const styles = css`
     top: 73%;
     width: 10%;
     transform: translate(-50%, -50%);
-    opacity: 0.3;
     transition: opacity 0.3s ease;
   }
   .secondary-icon.active {
-    opacity: 1;
+  }
+
+  /* Microwave Controls */
+  .microwave-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    pointer-events: auto;
+  }
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 10px;
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .light-control {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--secondary-text-color, #888);
+    transition: all 0.3s ease;
+  }
+  .light-control.on {
+    color: var(--accent-color, #ff9800);
+    filter: drop-shadow(0 0 5px var(--accent-color, #ff9800));
+  }
+  .fan-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--secondary-text-color, #888);
+  }
+  .fan-control.on {
+    color: var(--accent-color, #ff9800);
+  }
+  .fan-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+  }
+  .fan-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-color, #ff9800);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
 `;
