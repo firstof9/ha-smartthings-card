@@ -269,31 +269,27 @@ export const styles = css`
 
   /* Job States Styles */
   .job-states {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    gap: 4px;
-    flex-shrink: 1;
-    min-height: 0;
-    overflow: hidden;
-    padding-top: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
   .job-icon {
-    width: 80px;
-    min-width: 60px;
-    max-height: 100%;
-    height: auto;
+    position: absolute;
+    top: 30%;
+    width: 18%;
     image-rendering: pixelated;
+    transform: translate(-50%, -50%);
     opacity: 0.2;
     filter: grayscale(1);
     transition: all 0.5s ease;
-    object-fit: contain;
-    flex-shrink: 0;
   }
   .job-icon.active {
     opacity: 1;
     filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 
   /* Secondary Icons (WiFi, Lock) */

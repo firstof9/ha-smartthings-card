@@ -267,31 +267,27 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
 
   /* Job States Styles */
   .job-states {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    gap: 4px;
-    flex-shrink: 1;
-    min-height: 0;
-    overflow: hidden;
-    padding-top: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
   .job-icon {
-    width: 80px;
-    min-width: 60px;
-    max-height: 100%;
-    height: auto;
+    position: absolute;
+    top: 30%;
+    width: 18%;
     image-rendering: pixelated;
+    transform: translate(-50%, -50%);
     opacity: 0.2;
     filter: grayscale(1);
     transition: all 0.5s ease;
-    object-fit: contain;
-    flex-shrink: 0;
   }
   .job-icon.active {
     opacity: 1;
     filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: scale(1.05);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 
   /* Secondary Icons (WiFi, Lock) */
@@ -382,10 +378,9 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
         <div class="container ${this.config.appliance_type}">
           <img class="bg" src="${s}" @error=${this._handleImageError} />
 
-          ${this._renderSecondaryIcons()}
+          ${this._renderJobStates(i)} ${this._renderSecondaryIcons()}
 
           <div class="right-panel">
-            ${this._renderJobStates(i)}
             <div class="timer-row">
               <div class="time-bg">88:88:88</div>
               <div class="time-fg">${n}</div>
@@ -421,7 +416,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
     `}_toggleLight(){if(!this.hass||!this.config.light_entity)return;const A=this.hass.states[this.config.light_entity].state;this.hass.callService("light","on"===A?"turn_off":"turn_on",{entity_id:this.config.light_entity})}_handleFanSpeed(A){const g=A.target.value;if(!this.hass||!this.config.fan_entity)return;const I=this.config.fan_entity.split(".")[0],C="number"===I?"set_value":"set_percentage",t={entity_id:this.config.fan_entity};"number"===I?t.value=g:t.percentage=parseInt(g,10),this.hass.callService(I,C,t)}_renderJobStates(A){const g=this.config.appliance_type,I={dishwasher:[{name:"prewash",left:"33%"},{name:"wash",left:"51%",icon:"wash-plate"},{name:"rinse",left:"69%",icon:"rinse-plate"},{name:"dry",left:"85%",icon:"dry-plate"}],washer:[{name:"sensing",left:"35%"},{name:"wash",left:"52%"},{name:"rinse",left:"69%"},{name:"spin",left:"86%"}],dryer:[{name:"dry",left:"45%"},{name:"cool",left:"75%"}],microwave:[{name:"microwave",left:"77%"},{name:"autocook",left:"77%"}],oven:[{name:"cooking",left:"77%",icon:"microwave"}]};if(!I[g])return;const C=A.toLowerCase(),t=["none","off","unknown","unavailable","idle","standby"].includes(C),e="microwave"===g;return H`
       <div class="job-states">
         ${I[g].map(A=>{const i=!t&&(C===A.name||C===A.icon||C.startsWith(A.name)||A.icon&&C.startsWith(A.icon));if(e&&"77%"===A.left){const e=I[g].find(A=>!t&&(C.startsWith(A.name)||A.icon&&C.startsWith(A.icon)));if(e){if(A.name!==e.name)return""}else if("autocook"!==A.name)return""}const n=A.icon||A.name;let r=i?`${n}-on.png`:`${n}.png`;"microwave"===g&&"autocook"===n&&(r=i?"autocook.png":"autocook-off.png");let s=this._getAsset(g,r);return i&&!s&&(s=this._getAsset(g,`${n}.png`)),s?H`
-            <img class="job-icon ${i?"active":""}" src="${s}" title="${A.name}" />
+            <img class="job-icon ${i?"active":""}" src="${s}" style="left: ${A.left}" title="${A.name}" />
           `:""})}
       </div>
     `}_renderSecondaryIcons(){const A=this.config.wifi_entity?this.hass.states[this.config.wifi_entity]:null,g=this.config.lock_entity?this.hass.states[this.config.lock_entity]:null;if(!A&&!g)return;const I=this.config.appliance_type;return H`

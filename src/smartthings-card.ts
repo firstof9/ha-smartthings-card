@@ -163,10 +163,9 @@ export class SmartthingsCard extends LitElement {
         <div class="container ${this.config.appliance_type}">
           <img class="bg" src="${bgSrc}" @error=${this._handleImageError} />
 
-          ${this._renderSecondaryIcons()}
+          ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
 
           <div class="right-panel">
-            ${this._renderJobStates(activeMode)}
             <div class="timer-row">
               <div class="time-bg">88:88:88</div>
               <div class="time-fg">${timeState}</div>
@@ -322,7 +321,7 @@ export class SmartthingsCard extends LitElement {
           if (!iconSrc) return '';
 
           return html`
-            <img class="job-icon ${isActive ? 'active' : ''}" src="${iconSrc}" title="${stage.name}" />
+            <img class="job-icon ${isActive ? 'active' : ''}" src="${iconSrc}" style="left: ${stage.left}" title="${stage.name}" />
           `;
         })}
       </div>
