@@ -267,10 +267,11 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
   .job-states {
     display: flex;
     justify-content: center;
+    align-self: center;
     gap: 4px;
   }
   .job-icon {
-    width: 40px;
+    width: 60px;
     height: auto;
     image-rendering: pixelated;
     opacity: 0.2;
