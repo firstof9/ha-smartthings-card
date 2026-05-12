@@ -19,7 +19,8 @@ export const styles = css`
     top: 33%;
     left: 77%;
     width: 20%;
-    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
     transform: translate(-50%, -50%);
   }
   /* Right Panel — stacks timer + controls vertically */
@@ -277,7 +278,8 @@ export const styles = css`
     position: absolute;
     top: 23%;
     width: 18%;
-    image-rendering: pixelated;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
     transform: translate(-50%, -50%);
     filter: grayscale(1);
     transition: all 0.5s ease;
