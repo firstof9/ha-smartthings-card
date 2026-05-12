@@ -278,7 +278,7 @@ export const styles = css`
   }
   .job-icon {
     position: absolute;
-    top: 30%;
+    top: 20%;
     width: 18%;
     image-rendering: pixelated;
     transform: translate(-50%, -50%);

@@ -276,7 +276,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
   }
   .job-icon {
     position: absolute;
-    top: 30%;
+    top: 20%;
     width: 18%;
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
