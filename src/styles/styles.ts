@@ -276,6 +276,7 @@ export const styles = css`
     flex-shrink: 1;
     min-height: 0;
     overflow: hidden;
+    padding-top: 10px;
   }
   .job-icon {
     width: 80px;

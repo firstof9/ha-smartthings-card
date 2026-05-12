@@ -274,6 +274,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
     flex-shrink: 1;
     min-height: 0;
     overflow: hidden;
+    padding-top: 10px;
   }
   .job-icon {
     width: 80px;
