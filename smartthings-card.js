@@ -29,7 +29,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
     font-family: 'segment7', monospace;
     font-size: 50px;
     left: 95%;
-    top: 70%;
+    top: 65%;
     transform: translate(-100%, -50%);
     white-space: nowrap;
   }
