@@ -27,9 +27,9 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
   .time-fg {
     position: absolute;
     font-family: 'segment7', monospace;
-    font-size: 38px;
+    font-size: 50px;
     left: 95%;
-    top: 68%;
+    top: 72%;
     transform: translate(-100%, -50%);
     white-space: nowrap;
   }
@@ -261,7 +261,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
   }
   .job-icon {
     position: absolute;
-    top: 33%;
+    top: 28%;
     width: 16%;
     image-rendering: pixelated;
     transform: translate(-50%, -50%);
