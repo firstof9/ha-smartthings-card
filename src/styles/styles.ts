@@ -35,7 +35,7 @@ export const styles = css`
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
-    gap: 6px;
+    gap: 2px;
   }
   .timer-row {
     position: relative;

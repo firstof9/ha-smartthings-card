@@ -33,7 +33,7 @@ function A(A,g,I,C){var t,e=arguments.length,i=e<3?g:null===C?C=Object.getOwnPro
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
-    gap: 6px;
+    gap: 2px;
   }
   .timer-row {
     position: relative;
