@@ -44,7 +44,7 @@ export const styles = css`
   .time-bg,
   .time-fg {
     font-family: 'segment7', monospace;
-    font-size: clamp(28px, 8vw, 50px);
+    font-size: clamp(35px, 8vw, 50px);
     white-space: nowrap;
   }
   .time-bg {
