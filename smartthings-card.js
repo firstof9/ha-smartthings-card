@@ -25,11 +25,11 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
   .appliance-img {
     position: absolute;
-    left: 2%;
+    left: 3%;
     top: 50%;
     transform: translateY(-50%);
-    height: 85%;
-    width: auto;
+    height: 80%;
+    max-width: 45%;
     object-fit: contain;
     z-index: 2;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
@@ -532,10 +532,14 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
               />
             `:""}
       </div>
-    `}_getAsset(t,e){return`/local/community/ha-smartthings-card/images/${t}/${e}`}_renderRefrigerator(){const t=this.config.fridge_temp_entity?this.hass.states[this.config.fridge_temp_entity]:null,e=this.config.freezer_temp_entity?this.hass.states[this.config.freezer_temp_entity]:null,i=this.config.ice_maker_entity?this.hass.states[this.config.ice_maker_entity]:null,n=this.config.filter_status_entity?this.hass.states[this.config.filter_status_entity]:null,o=(this.config.door_entities||[]).map(t=>{const e=this.hass.states[t],i=t.toLowerCase();let n="top";i.includes("coolselect")?n="middle":i.includes("freezer")?n="bottom":i.includes("cooler")&&(n="top");return{position:n,label:e?.attributes?.friendly_name||t,isOpen:"on"===e?.state}}),s=this.config.bg_image||this._getAsset("refrigerator","hass-samsung-fridge-card-bg-black.png"),r=t?Math.round(parseFloat(t.state)).toString():"--",a=e?Math.round(parseFloat(e.state)).toString():"--";return F`
+    `}_getAsset(t,e){return`/local/community/ha-smartthings-card/images/${t}/${e}`}_renderRefrigerator(){const t=this.config.fridge_temp_entity?this.hass.states[this.config.fridge_temp_entity]:null,e=this.config.freezer_temp_entity?this.hass.states[this.config.freezer_temp_entity]:null,i=this.config.ice_maker_entity?this.hass.states[this.config.ice_maker_entity]:null,n=this.config.filter_status_entity?this.hass.states[this.config.filter_status_entity]:null,o=(this.config.door_entities||[]).map(t=>{const e=this.hass.states[t],i=t.toLowerCase();let n="top";i.includes("coolselect")?n="middle":i.includes("freezer")?n="bottom":i.includes("cooler")&&(n="top");return{position:n,label:e?.attributes?.friendly_name||t,isOpen:"on"===e?.state}}),s=this.config.bg_image||this._getAsset("refrigerator","hass-samsung-fridge-card-bg-black.png"),r=this._getAsset("refrigerator","appliance.png"),a=t?Math.round(parseFloat(t.state)).toString():"--",c=e?Math.round(parseFloat(e.state)).toString():"--";return F`
       <ha-card>
         <div class="container refrigerator">
-          <img class="bg" src="${s}" @error=${this._handleImageError} />
+          <div class="bg-layer"></div>
+          <img class="appliance-img" src="${r}" 
+            @load=${t=>t.target.classList.add("loaded")}
+            @error=${t=>t.target.style.display="none"} />
+          <img class="bg-legacy" src="${s}" @error=${this._handleImageError} />
 
           <!-- Icons Layer -->
           <img class="fridge-icon" src="${this._getAsset("refrigerator","fridge-temp.png")}" />
@@ -551,10 +555,10 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
           <!-- Values Layer -->
           <div class="fridge-value-bg">88</div>
-          <div class="fridge-value">${r}</div>
+          <div class="fridge-value">${a}</div>
 
           <div class="freezer-value-bg">88</div>
-          <div class="freezer-value">${a}</div>
+          <div class="freezer-value">${c}</div>
 
           <!-- Extra Info -->
           ${n?F`

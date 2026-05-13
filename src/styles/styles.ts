@@ -27,11 +27,11 @@ export const styles = css`
 
   .appliance-img {
     position: absolute;
-    left: 2%;
+    left: 3%;
     top: 50%;
     transform: translateY(-50%);
-    height: 85%;
-    width: auto;
+    height: 80%;
+    max-width: 45%;
     object-fit: contain;
     z-index: 2;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));

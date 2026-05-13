@@ -474,6 +474,7 @@ export class SmartthingsCard extends LitElement {
 
     const bgImg = `hass-samsung-fridge-card-bg-black.png`;
     const bgSrc = this.config.bg_image || this._getAsset('refrigerator', bgImg);
+    const applianceImg = this._getAsset('refrigerator', 'appliance.png');
 
     const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString() : '--';
     const frzTemp = freezerTemp ? Math.round(parseFloat(freezerTemp.state)).toString() : '--';
@@ -481,7 +482,11 @@ export class SmartthingsCard extends LitElement {
     return html`
       <ha-card>
         <div class="container refrigerator">
-          <img class="bg" src="${bgSrc}" @error=${this._handleImageError} />
+          <div class="bg-layer"></div>
+          <img class="appliance-img" src="${applianceImg}" 
+            @load=${(e: any) => e.target.classList.add('loaded')}
+            @error=${(e: any) => e.target.style.display = 'none'} />
+          <img class="bg-legacy" src="${bgSrc}" @error=${this._handleImageError} />
 
           <!-- Icons Layer -->
           <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
