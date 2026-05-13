@@ -200,7 +200,7 @@ export const styles = css`
   .door-overlay {
     position: absolute;
     left: 4%;
-    width: 18%;
+    width: 12%;
     border-radius: 4px;
     transition: all 0.4s ease;
     z-index: 4;
