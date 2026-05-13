@@ -128,6 +128,7 @@ export class SmartthingsCard extends LitElement {
     // Base paths
     const bgImg = `hass-samsung-${this.config.appliance_type}-card-bg-black.png`;
     const bgSrc = this.config.bg_image || this._getAsset(this.config.appliance_type, bgImg);
+    const applianceImg = this._getAsset(this.config.appliance_type, 'appliance.png');
 
     if (this.config.appliance_type === 'refrigerator') {
       return this._renderRefrigerator();
@@ -136,7 +137,11 @@ export class SmartthingsCard extends LitElement {
     return html`
       <ha-card>
         <div class="container ${this.config.appliance_type}">
-          <img class="bg" src="${bgSrc}" @error=${this._handleImageError} />
+          <div class="bg-layer"></div>
+          <img class="appliance-img" src="${applianceImg}" 
+            @load=${(e: any) => e.target.classList.add('loaded')}
+            @error=${(e: any) => e.target.style.display = 'none'} />
+          <img class="bg-legacy" src="${bgSrc}" @error=${this._handleImageError} />
 
           ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
 
@@ -445,8 +450,8 @@ export class SmartthingsCard extends LitElement {
     `;
   }
 
-  private _getAsset(appliance: string, filename: string): string {
-    return getAsset(appliance, filename);
+  private _getAsset(appliance: string, fileName: string): string {
+    return `/local/community/ha-smartthings-card/images/${appliance}/${fileName}`;
   }
 
   private _renderRefrigerator(): TemplateResult {

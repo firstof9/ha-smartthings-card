@@ -7,13 +7,50 @@ export const styles = css`
   .container {
     position: relative;
     width: 100%;
-    display: flex;
+    aspect-ratio: 16 / 9;
+    background: #1c1c1c;
+    border-radius: 12px;
+    overflow: hidden;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
-  .bg {
+
+  .bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, #2a2a2a 0%, #1c1c1c 70%);
+    z-index: 0;
   }
+
+  .appliance-img {
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 85%;
+    width: auto;
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  }
+
+  .bg-legacy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .appliance-img.loaded ~ .bg-legacy {
+    display: none; /* Hide legacy if new image loaded */
+  }
+
   .mode-icon {
     position: absolute;
     top: 33%;
