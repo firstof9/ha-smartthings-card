@@ -119,7 +119,7 @@ export class SmartthingsCard extends LitElement {
     // Active mode logic (prioritize job state, but fallback to mode if job state is idle/others for microwave only)
     const rawJobState = jobStateObj?.state?.toLowerCase() || 'off';
     const rawModeState = modeStateObj?.state?.toLowerCase() || 'off';
-    const isJobGeneric = ['none', 'others', 'off', 'unknown', 'unavailable', 'idle', 'running'].includes(rawJobState);
+    const isJobGeneric = ['none', 'others', 'off', 'unknown', 'unavailable', 'idle', 'running', 'cooking'].includes(rawJobState);
     
     const activeMode = (isJobGeneric && (this.config.appliance_type === 'microwave' || this.config.appliance_type === 'oven')) ? rawModeState : rawJobState;
     const isPoweredOff = powerStateObj?.state === 'off';
