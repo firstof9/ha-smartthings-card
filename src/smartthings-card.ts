@@ -101,6 +101,7 @@ export class SmartthingsCard extends LitElement {
         this.config.lock_entity,
         this.config.fan_entity,
         this.config.light_entity,
+        this.config.temperature_entity,
         ...(this.config.door_entities || []),
       ].filter(Boolean) as string[];
 
@@ -143,6 +144,10 @@ export class SmartthingsCard extends LitElement {
     const isPoweredOff = powerStateObj?.state === 'off';
     const timeState = (timeStateObj && !isPoweredOff) ? this._formatCountdown(timeStateObj.state) : '--:--:--';
 
+    const tempStateObj = this.config.temperature_entity ? this.hass.states[this.config.temperature_entity] : null;
+    const tempValue = tempStateObj ? Math.round(parseFloat(tempStateObj.state)).toString() : null;
+    const tempUnit = tempStateObj?.attributes.unit_of_measurement || '°C';
+
     const applianceImg = this.config.appliance_image || this._getAsset(this.config.appliance_type, 'appliance.png');
     const bgColor = this.config.background_color || '#3d3d3d';
 
@@ -160,6 +165,14 @@ export class SmartthingsCard extends LitElement {
           ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
 
           <div class="right-panel">
+            ${tempValue 
+              ? html`
+                  <div class="temp-row">
+                    <span>${tempValue}</span>
+                    <span class="temp-unit">${tempUnit}</span>
+                  </div>
+                ` 
+              : ''}
             <div class="timer-row">
               <div class="time-bg">88:88:88</div>
               <div class="time-fg">${timeState}</div>

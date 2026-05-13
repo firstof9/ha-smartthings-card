@@ -81,6 +81,24 @@ export const styles = css`
     color: var(--accent-color, #ff9800);
   }
 
+  .temp-row {
+    font-family: 'segment7', monospace;
+    font-size: clamp(24px, 5vw, 32px);
+    color: var(--accent-color, #ff9800);
+    margin-bottom: -5px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .temp-unit {
+    font-size: 0.5em;
+    opacity: 0.7;
+  }
+
   /* Refrigerator Styles */
   .refrigerator .fridge-icon,
   .refrigerator .freezer-icon,
