@@ -28,6 +28,15 @@ lovelace:
       type: module
 ```
 
+## Features
+
+- **Modern Glassmorphic UI**: Sleek, transparent design elements with vibrant accents.
+- **7-Segment Digital Readouts**: Authentic digital display for timers and temperatures with grey "88" placeholders.
+- **Responsive Layout**: Fully supports the new Home Assistant **Sections** dashboard with dynamic resizing.
+- **Live Countdown**: Real-time progress tracking for all appliances.
+- **Visual Editor**: Integrated configuration GUI with automatic entity discovery.
+- **Appliance Specific Overlays**: Interactive door status, filter health progress bars, and device controls.
+
 ## Configuration
 
 This card supports a fully featured Visual Editor in the Home Assistant UI. Simply add the card, select your SmartThings device, and the editor will automatically discover and populate the relevant entities.
@@ -44,6 +53,7 @@ For manual YAML configuration:
 | `machine_state_entity` | string | **Optional** | The entity ID for the machine state. |
 | `job_state_entity` | string | **Optional** | The entity ID for the current job state. |
 | `time_entity` | string | **Optional** | The entity ID for completion time or time remaining (supports live countdown). |
+| `temperature_entity` | string | **Optional** | The entity ID for real-time temperature monitoring (Microwave/Oven). |
 | `wifi_entity` | string | **Optional** | The entity ID for WiFi connection status. |
 | `lock_entity` | string | **Optional** | The entity ID for child lock status. |
 
@@ -57,11 +67,12 @@ For manual YAML configuration:
 | `filter_status_entity`| string | **Optional** | The entity ID for the water filter usage/health percentage. |
 | `filter_reset_entity` | string | **Optional** | The entity ID for a button to reset the water filter. |
 
-### Microwave Specific Options
+### Microwave / Oven Specific Options
 | Name | Type | Requirement | Description |
 | --- | --- | --- | --- |
 | `fan_entity` | string | **Optional** | The entity ID for the microwave fan (supports slider for `fan` or `number` entities). |
 | `light_entity` | string | **Optional** | The entity ID for the microwave light toggle. |
+| `temperature_entity` | string | **Optional** | The entity ID for the cooking temperature sensor. |
 
 ## Themes
 
