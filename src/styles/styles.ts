@@ -338,7 +338,7 @@ export const styles = css`
     width: 100%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    filter: grayscale(1) opacity(0.3) drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+    filter: grayscale(1) opacity(0.3) drop-shadow(rgba(255, 255, 255, 1) 0px 0px 0.6px);
     transition: all 0.5s ease;
   }
   .job-label {
