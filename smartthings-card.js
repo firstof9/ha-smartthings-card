@@ -25,7 +25,7 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
   .appliance-img {
     position: absolute;
-    left: 8%;
+    left: 4%;
     top: 50%;
     transform: translateY(-50%);
     height: 75%;
@@ -100,13 +100,10 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
   .washer .appliance-img,
   .dryer .appliance-img {
-    left: 4%;
     height: 55%;
   }
 
-  .dishwasher .appliance-img,
-  .refrigerator .appliance-img {
-    left: 4%;
+  .dishwasher .appliance-img {
     height: 50%;
   }
 

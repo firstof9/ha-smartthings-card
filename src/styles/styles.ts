@@ -27,7 +27,7 @@ export const styles = css`
 
   .appliance-img {
     position: absolute;
-    left: 8%;
+    left: 4%;
     top: 50%;
     transform: translateY(-50%);
     height: 75%;
@@ -102,13 +102,10 @@ export const styles = css`
 
   .washer .appliance-img,
   .dryer .appliance-img {
-    left: 4%;
     height: 55%;
   }
 
-  .dishwasher .appliance-img,
-  .refrigerator .appliance-img {
-    left: 4%;
+  .dishwasher .appliance-img {
     height: 50%;
   }
 
