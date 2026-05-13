@@ -322,7 +322,7 @@ export class SmartthingsCard extends LitElement {
           
           // For microwave and oven, only render the active one if it's a shared position (77%)
           // If none are active, pick a default to show
-          if ((isMicrowave || appliance === 'oven') && stage.left === '77%') {
+          if ((isMicrowave || appliance === 'oven') && stage.left === '72%') {
              const activeStage = stages[appliance].find(s => !isIdle && (currentMode.startsWith(s.name) || (s.icon && currentMode.startsWith(s.icon))));
              if (activeStage) {
                 if (stage.name !== activeStage.name) return '';
