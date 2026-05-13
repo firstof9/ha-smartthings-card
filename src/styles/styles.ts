@@ -311,6 +311,23 @@ export const styles = css`
   .dishwasher .job-icon-container {
     top: 38%;
   }
+  .job-icon-container.active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 152, 0, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -60%);
+    z-index: -1;
+    pointer-events: none;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.8; transform: translate(-50%, -60%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -60%) scale(1.1); }
+  }
   .job-icon-container.active .job-icon {
     filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
     transform: scale(1.15);
