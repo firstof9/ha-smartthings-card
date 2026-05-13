@@ -354,7 +354,7 @@ export class SmartthingsCard extends LitElement {
           return html`
             <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
               <img class="job-icon" src="${iconSrc}" title="${stage.name}" @error=${this._handleImageError} />
-              <div class="job-label">${this._getStageLabel(stage.name)}</div>
+              ${isMicrowave || appliance === 'oven' ? html`<div class="job-label">${this._getStageLabel(stage.name)}</div>` : ''}
             </div>
           `;
         })}
