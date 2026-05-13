@@ -338,7 +338,7 @@ export const styles = css`
     width: 100%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    filter: grayscale(1) opacity(0.3);
+    filter: grayscale(1) opacity(0.3) drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
     transition: all 0.5s ease;
   }
   .job-label {
@@ -377,7 +377,7 @@ export const styles = css`
     50% { opacity: 1; transform: translate(-50%, -60%) scale(1.1); }
   }
   .job-icon-container.active .job-icon {
-    filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
+    filter: grayscale(0) opacity(1) drop-shadow(0 0 8px var(--accent-color, #ff9800)) drop-shadow(0 0 15px rgba(255, 152, 0, 0.4));
     transform: scale(1.15);
   }
   .job-icon-container.active .job-label {
