@@ -95,7 +95,7 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
   .refrigerator .appliance-img {
     left: 4%;
-    height: 50%;
+    height: 65%;
   }
 
   .refrigerator .fridge-value-bg,
@@ -200,18 +200,18 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
   }
   /* Cooler door — top section */
   .door-overlay.door-top {
-    top: 29%;
-    height: 21%;
+    top: 23%;
+    height: 27%;
   }
   /* CoolSelect drawer — middle section */
   .door-overlay.door-middle {
     top: 51%;
-    height: 9%;
+    height: 12%;
   }
   /* Freezer drawer — bottom section */
   .door-overlay.door-bottom {
-    top: 61%;
-    height: 11%;
+    top: 64%;
+    height: 15%;
   }
 
   /* Ice Maker States */

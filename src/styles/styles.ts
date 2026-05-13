@@ -97,7 +97,7 @@ export const styles = css`
 
   .refrigerator .appliance-img {
     left: 4%;
-    height: 50%;
+    height: 65%;
   }
 
   .refrigerator .fridge-value-bg,
@@ -202,18 +202,18 @@ export const styles = css`
   }
   /* Cooler door — top section */
   .door-overlay.door-top {
-    top: 29%;
-    height: 21%;
+    top: 23%;
+    height: 27%;
   }
   /* CoolSelect drawer — middle section */
   .door-overlay.door-middle {
     top: 51%;
-    height: 9%;
+    height: 12%;
   }
   /* Freezer drawer — bottom section */
   .door-overlay.door-bottom {
-    top: 61%;
-    height: 11%;
+    top: 64%;
+    height: 15%;
   }
 
   /* Ice Maker States */
