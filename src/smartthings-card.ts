@@ -125,9 +125,6 @@ export class SmartthingsCard extends LitElement {
     const isPoweredOff = powerStateObj?.state === 'off';
     const timeState = (timeStateObj && !isPoweredOff) ? this._formatCountdown(timeStateObj.state) : '--:--:--';
 
-    // Base paths
-    const bgImg = `hass-samsung-${this.config.appliance_type}-card-bg-black.png`;
-    const bgSrc = this.config.bg_image || this._getAsset(this.config.appliance_type, bgImg);
     const applianceImg = this._getAsset(this.config.appliance_type, 'appliance.png');
 
     if (this.config.appliance_type === 'refrigerator') {
@@ -139,9 +136,7 @@ export class SmartthingsCard extends LitElement {
         <div class="container ${this.config.appliance_type}">
           <div class="bg-layer"></div>
           <img class="appliance-img" src="${applianceImg}" 
-            @load=${(e: any) => e.target.classList.add('loaded')}
             @error=${(e: any) => e.target.style.display = 'none'} />
-          <img class="bg-legacy" src="${bgSrc}" @error=${this._handleImageError} />
 
           ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
 
@@ -472,8 +467,6 @@ export class SmartthingsCard extends LitElement {
       return { position, label, isOpen: stateObj?.state === 'on' };
     });
 
-    const bgImg = `hass-samsung-fridge-card-bg-black.png`;
-    const bgSrc = this.config.bg_image || this._getAsset('refrigerator', bgImg);
     const applianceImg = this._getAsset('refrigerator', 'appliance.png');
 
     const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString() : '--';
@@ -484,9 +477,7 @@ export class SmartthingsCard extends LitElement {
         <div class="container refrigerator">
           <div class="bg-layer"></div>
           <img class="appliance-img" src="${applianceImg}" 
-            @load=${(e: any) => e.target.classList.add('loaded')}
             @error=${(e: any) => e.target.style.display = 'none'} />
-          <img class="bg-legacy" src="${bgSrc}" @error=${this._handleImageError} />
 
           <!-- Icons Layer -->
           <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />

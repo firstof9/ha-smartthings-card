@@ -37,19 +37,6 @@ export const styles = css`
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
   }
 
-  .bg-legacy {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-  }
-
-  .appliance-img.loaded ~ .bg-legacy {
-    display: none; /* Hide legacy if new image loaded */
-  }
 
   .mode-icon {
     position: absolute;
