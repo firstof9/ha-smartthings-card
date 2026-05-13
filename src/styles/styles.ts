@@ -274,9 +274,9 @@ export const styles = css`
     height: 100%;
     pointer-events: none;
   }
-  .job-icon-container {
+   .job-icon-container {
     position: absolute;
-    top: 23%;
+    top: 28%;
     width: 18%;
     display: flex;
     flex-direction: column;
@@ -294,7 +294,7 @@ export const styles = css`
     transition: all 0.5s ease;
   }
   .job-label {
-    margin-top: 4px;
+    margin-top: -12px;
     font-size: clamp(8px, 1.8vw, 10px);
     font-weight: 800;
     text-transform: uppercase;
@@ -304,11 +304,12 @@ export const styles = css`
     white-space: nowrap;
     opacity: 0.4;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
   }
   .washer .job-icon-container,
   .dryer .job-icon-container,
   .dishwasher .job-icon-container {
-    top: 33%;
+    top: 38%;
   }
   .job-icon-container.active .job-icon {
     filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
