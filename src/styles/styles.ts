@@ -65,10 +65,11 @@ export const styles = css`
     position: relative;
     white-space: nowrap;
     background: rgba(0, 0, 0, 0.2);
-    padding: 2px 10px;
+    padding: 0px 10px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     margin-bottom: 5px;
+    line-height: 1;
   }
   .time-bg,
   .time-fg {
@@ -88,16 +89,17 @@ export const styles = css`
 
   .temp-row {
     font-family: 'segment7', monospace;
-    font-size: clamp(24px, 5vw, 32px);
+    font-size: clamp(20px, 4vw, 28px);
     color: var(--accent-color, #ff9800);
-    margin-bottom: -5px;
+    margin-bottom: -2px;
     background: rgba(0, 0, 0, 0.2);
-    padding: 2px 10px;
-    border-radius: 8px;
+    padding: 0px 8px;
+    border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: baseline;
     gap: 4px;
+    line-height: 1.1;
   }
   .temp-unit {
     font-size: 0.5em;
@@ -149,9 +151,11 @@ export const styles = css`
     white-space: nowrap;
     z-index: 5;
     background: rgba(0, 0, 0, 0.2);
-    padding: 2px 10px;
+    padding: 0px 8px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    min-width: 65px;
+    text-align: right;
   }
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value { left: 42%; }

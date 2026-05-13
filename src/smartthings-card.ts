@@ -497,8 +497,8 @@ export class SmartthingsCard extends LitElement {
     const applianceImg = this.config.appliance_image || this._getAsset('refrigerator', 'appliance.png');
     const bgColor = this.config.background_color || '#3d3d3d';
 
-    const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString() : '--';
-    const frzTemp = freezerTemp ? Math.round(parseFloat(freezerTemp.state)).toString() : '--';
+    const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString().padStart(2, ' ') : '--';
+    const frzTemp = freezerTemp ? Math.round(parseFloat(freezerTemp.state)).toString().padStart(2, ' ') : '--';
 
     return html`
       <ha-card>
