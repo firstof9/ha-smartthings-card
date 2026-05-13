@@ -125,7 +125,8 @@ export class SmartthingsCard extends LitElement {
     const isPoweredOff = powerStateObj?.state === 'off';
     const timeState = (timeStateObj && !isPoweredOff) ? this._formatCountdown(timeStateObj.state) : '--:--:--';
 
-    const applianceImg = this._getAsset(this.config.appliance_type, 'appliance.png');
+    const applianceImg = this.config.appliance_image || this._getAsset(this.config.appliance_type, 'appliance.png');
+    const bgColor = this.config.background_color || '#3d3d3d';
 
     if (this.config.appliance_type === 'refrigerator') {
       return this._renderRefrigerator();
@@ -134,7 +135,7 @@ export class SmartthingsCard extends LitElement {
     return html`
       <ha-card>
         <div class="container ${this.config.appliance_type}">
-          <div class="bg-layer"></div>
+          <div class="bg-layer" style="--bg-color-primary: ${bgColor}"></div>
           <img class="appliance-img" src="${applianceImg}" 
             @error=${(e: any) => e.target.style.display = 'none'} />
 
@@ -467,7 +468,8 @@ export class SmartthingsCard extends LitElement {
       return { position, label, isOpen: stateObj?.state === 'on' };
     });
 
-    const applianceImg = this._getAsset('refrigerator', 'appliance.png');
+    const applianceImg = this.config.appliance_image || this._getAsset('refrigerator', 'appliance.png');
+    const bgColor = this.config.background_color || '#3d3d3d';
 
     const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString() : '--';
     const frzTemp = freezerTemp ? Math.round(parseFloat(freezerTemp.state)).toString() : '--';
@@ -475,7 +477,7 @@ export class SmartthingsCard extends LitElement {
     return html`
       <ha-card>
         <div class="container refrigerator">
-          <div class="bg-layer"></div>
+          <div class="bg-layer" style="--bg-color-primary: ${bgColor}"></div>
           <img class="appliance-img" src="${applianceImg}" 
             @error=${(e: any) => e.target.style.display = 'none'} />
 

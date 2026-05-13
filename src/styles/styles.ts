@@ -21,7 +21,7 @@ export const styles = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 50%, #3d3d3d 0%, #2a2a2a 70%);
+    background: radial-gradient(circle at 30% 50%, var(--bg-color-primary, #3d3d3d) 0%, #2a2a2a 70%);
     z-index: 0;
   }
 
