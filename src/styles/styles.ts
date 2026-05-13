@@ -149,9 +149,8 @@ export const styles = css`
     padding: 0px 8px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     line-height: 1;
   }
   .refrigerator .fridge-temp-box { left: 42%; }
@@ -161,9 +160,10 @@ export const styles = css`
   .refrigerator .fridge-value,
   .refrigerator .freezer-value-bg,
   .refrigerator .freezer-value {
+    grid-area: 1 / 1;
     font-family: 'segment7', monospace;
     font-size: 50px;
-    white-space: nowrap;
+    white-space: pre;
   }
 
   .refrigerator .fridge-value-bg,
@@ -173,7 +173,7 @@ export const styles = css`
   .refrigerator .fridge-value,
   .refrigerator .freezer-value { 
     color: var(--accent-color, #ff9800);
-    position: absolute;
+    z-index: 1;
   }
 
   .filter-status {
