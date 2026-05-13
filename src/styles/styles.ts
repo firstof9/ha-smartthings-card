@@ -468,8 +468,8 @@ export const styles = css`
     right: 5%;
   }
   .secondary-icon {
-    width: clamp(20px, 4vw, 24px);
-    height: auto;
+    width: 40px;
+    height: 40px;
     transition: opacity 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
   }
