@@ -195,8 +195,8 @@ export const styles = css`
 
   .door-overlay {
     position: absolute;
-    left: 3%;
-    width: 22%;
+    left: 4.5%;
+    width: 14%;
     border-radius: 4px;
     transition: all 0.4s ease;
     z-index: 4;
@@ -212,18 +212,18 @@ export const styles = css`
   }
   /* Cooler door — top section */
   .door-overlay.door-top {
-    top: 23%;
-    height: 27%;
+    top: 18.5%;
+    height: 30%;
   }
   /* CoolSelect drawer — middle section */
   .door-overlay.door-middle {
-    top: 51%;
-    height: 12%;
+    top: 49.5%;
+    height: 11.5%;
   }
   /* Freezer drawer — bottom section */
   .door-overlay.door-bottom {
-    top: 64%;
-    height: 15%;
+    top: 62%;
+    height: 18%;
   }
 
   /* Ice Maker States */
