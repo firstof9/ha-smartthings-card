@@ -95,6 +95,11 @@ export const styles = css`
   .refrigerator .freezer-icon { left: 51%; }
   .refrigerator .icemaker-icon { left: 69%; cursor: pointer; }
 
+  .microwave .appliance-img,
+  .oven .appliance-img {
+    max-width: 35%;
+  }
+
   .dishwasher .appliance-img,
   .refrigerator .appliance-img {
     left: 4%;

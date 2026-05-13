@@ -93,6 +93,11 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
   .refrigerator .freezer-icon { left: 51%; }
   .refrigerator .icemaker-icon { left: 69%; cursor: pointer; }
 
+  .microwave .appliance-img,
+  .oven .appliance-img {
+    max-width: 35%;
+  }
+
   .dishwasher .appliance-img,
   .refrigerator .appliance-img {
     left: 4%;
