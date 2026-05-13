@@ -35,6 +35,21 @@ export class SmartthingsCard extends LitElement {
     return styles;
   }
 
+  public static getLayoutOptions() {
+    return {
+      grid_rows: 3,
+      grid_columns: 4,
+      grid_min_rows: 2,
+      grid_max_rows: 6,
+      grid_min_columns: 3,
+      grid_max_columns: 12,
+    };
+  }
+
+  public getGridSize() {
+    return [4, 3];
+  }
+
   public setConfig(config: SmartthingsCardConfig): void {
     if (!config) {
       throw new Error('Invalid configuration');
