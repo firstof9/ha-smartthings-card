@@ -89,15 +89,15 @@ export const styles = css`
 
   .temp-row {
     font-family: 'segment7', monospace;
-    font-size: clamp(20px, 4vw, 28px);
-    margin-bottom: -2px;
+    font-size: clamp(40px, 8vw, 50px);
+    margin-bottom: 5px;
     background: rgba(0, 0, 0, 0.2);
-    padding: 0px 8px;
-    border-radius: 6px;
+    padding: 0px 10px;
+    border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     display: grid;
     place-items: center baseline;
-    line-height: 1.1;
+    line-height: 1;
   }
   .temp-bg,
   .temp-fg {
@@ -115,7 +115,7 @@ export const styles = css`
     gap: 4px;
   }
   .temp-unit {
-    font-size: 0.5em;
+    font-size: 0.4em;
     opacity: 0.7;
   }
 
