@@ -137,7 +137,7 @@ export const styles = css`
 
   .filter-status {
     position: absolute;
-    top: 25%;
+    top: 65%;
     right: 2%;
     width: 35%;
     display: flex;

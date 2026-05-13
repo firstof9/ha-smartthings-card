@@ -135,7 +135,7 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
   .filter-status {
     position: absolute;
-    top: 25%;
+    top: 65%;
     right: 2%;
     width: 35%;
     display: flex;
