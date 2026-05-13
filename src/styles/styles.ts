@@ -100,6 +100,12 @@ export const styles = css`
     max-width: 35%;
   }
 
+  .washer .appliance-img,
+  .dryer .appliance-img {
+    left: 4%;
+    height: 55%;
+  }
+
   .dishwasher .appliance-img,
   .refrigerator .appliance-img {
     left: 4%;

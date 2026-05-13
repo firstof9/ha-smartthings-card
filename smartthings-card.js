@@ -98,6 +98,12 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
     max-width: 35%;
   }
 
+  .washer .appliance-img,
+  .dryer .appliance-img {
+    left: 4%;
+    height: 55%;
+  }
+
   .dishwasher .appliance-img,
   .refrigerator .appliance-img {
     left: 4%;
