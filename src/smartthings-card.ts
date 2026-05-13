@@ -37,17 +37,17 @@ export class SmartthingsCard extends LitElement {
 
   public getGridOptions() {
     return {
-      columns: 4,
+      columns: 12,
       rows: 3,
-      min_columns: 3,
+      min_columns: 9,
       max_columns: 12,
-      min_rows: 2,
+      min_rows: 3,
       max_rows: 6,
     };
   }
 
   public getGridSize() {
-    return [4, 3];
+    return [12, 3];
   }
 
   public getCardSize() {
