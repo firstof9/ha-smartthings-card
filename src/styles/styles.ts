@@ -21,7 +21,7 @@ export const styles = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 50%, #2a2a2a 0%, #1c1c1c 70%);
+    background: radial-gradient(circle at 30% 50%, #3d3d3d 0%, #2a2a2a 70%);
     z-index: 0;
   }
 
@@ -198,8 +198,8 @@ export const styles = css`
 
   .door-overlay {
     position: absolute;
-    left: 4.5%;
-    width: 14%;
+    left: 4%;
+    width: 18%;
     border-radius: 4px;
     transition: all 0.4s ease;
     z-index: 4;
