@@ -108,6 +108,10 @@ export const styles = css`
   .refrigerator .freezer-icon { left: 51%; }
   .refrigerator .icemaker-icon { left: 69%; cursor: pointer; }
 
+  .refrigerator .appliance-img {
+    left: 14%;
+  }
+
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value,
   .refrigerator .freezer-value-bg,
@@ -193,8 +197,8 @@ export const styles = css`
 
   .door-overlay {
     position: absolute;
-    left: 1.5%;
-    width: 17%;
+    left: 12.5%;
+    width: 20%;
     border-radius: 4px;
     transition: all 0.4s ease;
     z-index: 4;
