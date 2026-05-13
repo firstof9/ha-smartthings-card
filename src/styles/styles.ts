@@ -31,7 +31,7 @@ export const styles = css`
     bottom: 3%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
     gap: 2px;
   }

@@ -29,7 +29,7 @@ function A(A,g,C,I){var t,e=arguments.length,n=e<3?g:null===I?I=Object.getOwnPro
     bottom: 3%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
     gap: 2px;
   }
