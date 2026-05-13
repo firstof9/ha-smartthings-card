@@ -111,8 +111,8 @@ export class SmartthingsCardEditor extends LitElement {
     ];
 
     const footerSchema = [
-      { name: 'bg_image', label: 'Background Image Path', selector: { text: {} } },
-      { name: 'default_image', label: 'Default Icon Path', selector: { text: {} } },
+      { name: 'appliance_image', label: 'Appliance Image Path (Optional)', selector: { text: {} } },
+      { name: 'background_color', label: 'Background Color (Optional)', selector: { color_rgb: {} } },
     ];
 
     let finalSchema: any[] = [...baseSchema];

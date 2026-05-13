@@ -1,10 +1,14 @@
 export interface HassEntityState {
+  entity_id: string;
   state: string;
   attributes: {
     friendly_name?: string;
     unit_of_measurement?: string;
     [key: string]: unknown;
   };
+  last_changed: string;
+  last_updated: string;
+  context: { id: string; parent_id: string | null; user_id: string | null };
 }
 
 export interface HomeAssistant {
@@ -33,7 +37,7 @@ export interface SmartthingsCardConfig {
   lock_entity?: string;
   fan_entity?: string;
   light_entity?: string;
-  default_image?: string;
-  bg_image?: string;
+  appliance_image?: string;
+  background_color?: string;
   state_images?: Record<string, string>;
 }

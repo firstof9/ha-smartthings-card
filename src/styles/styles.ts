@@ -7,13 +7,37 @@ export const styles = css`
   .container {
     position: relative;
     width: 100%;
-    display: flex;
+    aspect-ratio: 16 / 9;
+    background: #1c1c1c;
+    border-radius: 12px;
+    overflow: hidden;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
-  .bg {
+
+  .bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, var(--bg-color-primary, #3d3d3d) 0%, #2a2a2a 70%);
+    z-index: 0;
   }
+
+  .appliance-img {
+    position: absolute;
+    left: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 75%;
+    max-width: 45%;
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  }
+
+
   .mode-icon {
     position: absolute;
     top: 33%;
@@ -31,9 +55,10 @@ export const styles = css`
     bottom: 3%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
     gap: 2px;
+    z-index: 5;
   }
   .timer-row {
     position: relative;
@@ -64,10 +89,29 @@ export const styles = css`
     width: 20%;
     transform: translate(-50%, -50%);
     image-rendering: pixelated;
+    z-index: 5;
   }
   .refrigerator .fridge-icon { left: 33%; }
   .refrigerator .freezer-icon { left: 51%; }
   .refrigerator .icemaker-icon { left: 69%; cursor: pointer; }
+
+  .microwave .appliance-img,
+  .oven .appliance-img {
+    max-width: 35%;
+  }
+
+  .washer .appliance-img,
+  .dryer .appliance-img {
+    height: 55%;
+  }
+
+  .dishwasher .appliance-img {
+    height: 50%;
+  }
+
+  .refrigerator .appliance-img {
+    height: 65%;
+  }
 
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value,
@@ -79,6 +123,7 @@ export const styles = css`
     font-family: 'segment7', monospace;
     font-size: 50px;
     white-space: nowrap;
+    z-index: 5;
   }
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value { left: 40%; }
@@ -92,13 +137,14 @@ export const styles = css`
 
   .filter-status {
     position: absolute;
-    bottom: 8%;
+    top: 65%;
     right: 2%;
     width: 35%;
     display: flex;
     flex-direction: column;
     gap: 4px;
     color: var(--secondary-text-color, #888);
+    z-index: 5;
   }
   .filter-label-row {
     display: flex;
@@ -152,10 +198,11 @@ export const styles = css`
 
   .door-overlay {
     position: absolute;
-    left: 1.5%;
-    width: 17%;
+    left: 4%;
+    width: 18%;
     border-radius: 4px;
     transition: all 0.4s ease;
+    z-index: 4;
   }
   .door-overlay.closed {
     background: rgba(76, 175, 80, 0.15);
@@ -168,18 +215,18 @@ export const styles = css`
   }
   /* Cooler door — top section */
   .door-overlay.door-top {
-    top: 8%;
-    height: 42%;
+    top: 18.5%;
+    height: 30%;
   }
   /* CoolSelect drawer — middle section */
   .door-overlay.door-middle {
-    top: 52%;
-    height: 18%;
+    top: 49.5%;
+    height: 11.5%;
   }
   /* Freezer drawer — bottom section */
   .door-overlay.door-bottom {
-    top: 72%;
-    height: 22%;
+    top: 62%;
+    height: 18%;
   }
 
   /* Ice Maker States */
@@ -274,24 +321,70 @@ export const styles = css`
     height: 100%;
     pointer-events: none;
   }
-  .job-icon {
+   .job-icon-container {
     position: absolute;
-    top: 23%;
+    top: 25%;
     width: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    pointer-events: auto;
+    z-index: 5;
+  }
+  .job-icon {
+    width: 100%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    transform: translate(-50%, -50%);
-    filter: grayscale(1);
+    filter: grayscale(1) opacity(0.3) drop-shadow(rgba(255, 255, 255, 1) 0px 0px 0.6px);
     transition: all 0.5s ease;
   }
-  .washer .job-icon,
-  .dryer .job-icon,
-  .dishwasher .job-icon {
-    top: 33%;
+  .job-label {
+    margin-top: -12px;
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--secondary-text-color, #888);
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0.4;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
   }
-  .job-icon.active {
-    filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: translate(-50%, -50%) scale(1.05);
+  .washer .job-icon-container,
+  .dryer .job-icon-container,
+  .dishwasher .job-icon-container {
+    top: 38%;
+  }
+  .job-icon-container.active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 152, 0, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -60%);
+    z-index: -1;
+    pointer-events: none;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.8; transform: translate(-50%, -60%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -60%) scale(1.1); }
+  }
+  .job-icon-container.active .job-icon {
+    filter: grayscale(0) opacity(1) drop-shadow(0 0 8px var(--accent-color, #ff9800)) drop-shadow(0 0 15px rgba(255, 152, 0, 0.4));
+    transform: scale(1.15);
+  }
+  .job-icon-container.active .job-label {
+    opacity: 1;
+    color: var(--accent-color, #ff9800);
+    text-shadow: 0 0 10px var(--accent-color, #ff9800), 0 0 20px rgba(255, 152, 0, 0.3);
+    transform: scale(1.05);
   }
 
   /* Secondary Icons (WiFi, Lock) */
@@ -302,6 +395,7 @@ export const styles = css`
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 5;
   }
   .secondary-icon {
     position: absolute;
@@ -319,6 +413,7 @@ export const styles = css`
     justify-content: flex-end;
     align-items: center;
     pointer-events: auto;
+    z-index: 5;
   }
   .control-group {
     display: flex;

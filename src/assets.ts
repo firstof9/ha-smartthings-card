@@ -26,8 +26,43 @@ import dryer_wifi_on_png from '../images/dryer/wifi-on.png';
 import dryer_wifi_png from '../images/dryer/wifi.png';
 import microwave_autocook_off_png from '../images/microwave/autocook-off.png';
 import microwave_autocook_png from '../images/microwave/autocook.png';
+import microwave_bake_on_png from '../images/microwave/bake-on.png';
+import microwave_bake_png from '../images/microwave/bake.png';
+import microwave_convection_on_png from '../images/microwave/convection-on.png';
+import microwave_convection_png from '../images/microwave/convection.png';
+import microwave_conventional_on_png from '../images/microwave/conventional-on.png';
+import microwave_conventional_png from '../images/microwave/conventional.png';
+import microwave_cooking_on_png from '../images/microwave/cooking-on.png';
+import microwave_cooking_png from '../images/microwave/cooking.png';
+import microwave_grill_on_png from '../images/microwave/grill-on.png';
+import microwave_grill_png from '../images/microwave/grill.png';
 import microwave_hass_samsung_microwave_card_bg_black_png from '../images/microwave/hass-samsung-microwave-card-bg-black.png';
+import microwave_hot_blast_on_png from '../images/microwave/hot_blast-on.png';
+import microwave_hot_blast_png from '../images/microwave/hot_blast.png';
+import microwave_microwave_on_png from '../images/microwave/microwave-on.png';
 import microwave_microwave_png from '../images/microwave/microwave.png';
+import microwave_rinse_on_png from '../images/microwave/rinse-on.png';
+import microwave_rinse_png from '../images/microwave/rinse.png';
+import microwave_steam_on_png from '../images/microwave/steam-on.png';
+import microwave_steam_png from '../images/microwave/steam.png';
+import oven_bake_on_png from '../images/oven/bake-on.png';
+import oven_bake_png from '../images/oven/bake.png';
+import oven_convection_on_png from '../images/oven/convection-on.png';
+import oven_convection_png from '../images/oven/convection.png';
+import oven_conventional_on_png from '../images/oven/conventional-on.png';
+import oven_conventional_png from '../images/oven/conventional.png';
+import oven_cooking_on_png from '../images/oven/cooking-on.png';
+import oven_cooking_png from '../images/oven/cooking.png';
+import oven_grill_on_png from '../images/oven/grill-on.png';
+import oven_grill_png from '../images/oven/grill.png';
+import oven_hot_blast_on_png from '../images/oven/hot_blast-on.png';
+import oven_hot_blast_png from '../images/oven/hot_blast.png';
+import oven_microwave_on_png from '../images/oven/microwave-on.png';
+import oven_microwave_png from '../images/oven/microwave.png';
+import oven_rinse_on_png from '../images/oven/rinse-on.png';
+import oven_rinse_png from '../images/oven/rinse.png';
+import oven_steam_on_png from '../images/oven/steam-on.png';
+import oven_steam_png from '../images/oven/steam.png';
 import refrigerator_freezer_temp_png from '../images/refrigerator/freezer-temp.png';
 import refrigerator_fridge_temp_png from '../images/refrigerator/fridge-temp.png';
 import refrigerator_hass_samsung_fridge_card_bg_black_png from '../images/refrigerator/hass-samsung-fridge-card-bg-black.png';
@@ -81,10 +116,45 @@ export const ASSETS: Record<string, Record<string, string>> = {
   'microwave': {
     'autocook-off.png': microwave_autocook_off_png,
     'autocook.png': microwave_autocook_png,
+    'bake-on.png': microwave_bake_on_png,
+    'bake.png': microwave_bake_png,
+    'convection-on.png': microwave_convection_on_png,
+    'convection.png': microwave_convection_png,
+    'conventional-on.png': microwave_conventional_on_png,
+    'conventional.png': microwave_conventional_png,
+    'cooking-on.png': microwave_cooking_on_png,
+    'cooking.png': microwave_cooking_png,
+    'grill-on.png': microwave_grill_on_png,
+    'grill.png': microwave_grill_png,
     'hass-samsung-microwave-card-bg-black.png': microwave_hass_samsung_microwave_card_bg_black_png,
+    'hot_blast-on.png': microwave_hot_blast_on_png,
+    'hot_blast.png': microwave_hot_blast_png,
+    'microwave-on.png': microwave_microwave_on_png,
     'microwave.png': microwave_microwave_png,
+    'rinse-on.png': microwave_rinse_on_png,
+    'rinse.png': microwave_rinse_png,
+    'steam-on.png': microwave_steam_on_png,
+    'steam.png': microwave_steam_png,
   },
   'oven': {
+    'bake-on.png': oven_bake_on_png,
+    'bake.png': oven_bake_png,
+    'convection-on.png': oven_convection_on_png,
+    'convection.png': oven_convection_png,
+    'conventional-on.png': oven_conventional_on_png,
+    'conventional.png': oven_conventional_png,
+    'cooking-on.png': oven_cooking_on_png,
+    'cooking.png': oven_cooking_png,
+    'grill-on.png': oven_grill_on_png,
+    'grill.png': oven_grill_png,
+    'hot_blast-on.png': oven_hot_blast_on_png,
+    'hot_blast.png': oven_hot_blast_png,
+    'microwave-on.png': oven_microwave_on_png,
+    'microwave.png': oven_microwave_png,
+    'rinse-on.png': oven_rinse_on_png,
+    'rinse.png': oven_rinse_png,
+    'steam-on.png': oven_steam_on_png,
+    'steam.png': oven_steam_png,
   },
   'refrigerator': {
     'freezer-temp.png': refrigerator_freezer_temp_png,
