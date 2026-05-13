@@ -37,6 +37,7 @@ export interface SmartthingsCardConfig {
   lock_entity?: string;
   fan_entity?: string;
   light_entity?: string;
+  temperature_entity?: string;
   appliance_image?: string;
   background_color?: string;
   state_images?: Record<string, string>;

@@ -64,6 +64,12 @@ export const styles = css`
   .timer-row {
     position: relative;
     white-space: nowrap;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 5px;
+    line-height: 1;
   }
   .time-bg,
   .time-fg {
@@ -76,9 +82,41 @@ export const styles = css`
   }
   .time-fg {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 2px;
+    left: 10px;
     color: var(--accent-color, #ff9800);
+  }
+
+  .temp-row {
+    font-family: 'segment7', monospace;
+    font-size: clamp(40px, 8vw, 50px);
+    margin-bottom: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: grid;
+    place-items: center baseline;
+    line-height: 1;
+  }
+  .temp-bg,
+  .temp-fg {
+    grid-area: 1 / 1;
+    white-space: pre;
+  }
+  .temp-bg {
+    color: var(--divider-color, #333);
+  }
+  .temp-fg {
+    color: var(--accent-color, #ff9800);
+    z-index: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .temp-unit {
+    font-size: 0.4em;
+    opacity: 0.7;
   }
 
   /* Refrigerator Styles */
@@ -114,27 +152,42 @@ export const styles = css`
     height: 65%;
   }
 
+  .refrigerator .fridge-temp-box,
+  .refrigerator .freezer-temp-box {
+    position: absolute;
+    top: 74%;
+    transform: translate(-100%, -50%);
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: grid;
+    place-items: center;
+    line-height: 1;
+  }
+  .refrigerator .fridge-temp-box { left: 42%; }
+  .refrigerator .freezer-temp-box { left: 59%; }
+
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value,
   .refrigerator .freezer-value-bg,
   .refrigerator .freezer-value {
-    position: absolute;
-    top: 74%;
-    transform: translate(-100%, -50%);
+    grid-area: 1 / 1;
     font-family: 'segment7', monospace;
     font-size: 50px;
-    white-space: nowrap;
-    z-index: 5;
+    white-space: pre;
   }
-  .refrigerator .fridge-value-bg,
-  .refrigerator .fridge-value { left: 40%; }
-  .refrigerator .freezer-value-bg,
-  .refrigerator .freezer-value { left: 57%; }
 
   .refrigerator .fridge-value-bg,
-  .refrigerator .freezer-value-bg { color: var(--divider-color, #333); }
+  .refrigerator .freezer-value-bg { 
+    color: var(--divider-color, #333);
+  }
   .refrigerator .fridge-value,
-  .refrigerator .freezer-value { color: var(--accent-color, #ff9800); }
+  .refrigerator .freezer-value { 
+    color: var(--accent-color, #ff9800);
+    z-index: 1;
+  }
 
   .filter-status {
     position: absolute;
@@ -200,7 +253,7 @@ export const styles = css`
   .door-overlay {
     position: absolute;
     left: 4%;
-    width: 18%;
+    width: 12%;
     border-radius: 4px;
     transition: all 0.4s ease;
     z-index: 4;
@@ -360,6 +413,11 @@ export const styles = css`
   .dishwasher .job-icon-container {
     top: 38%;
   }
+  .microwave .job-icon-container,
+  .oven .job-icon-container {
+    top: 15%;
+    left: 65%;
+  }
   .job-icon-container.active::before {
     content: '';
     position: absolute;
@@ -389,21 +447,31 @@ export const styles = css`
   }
 
   /* Secondary Icons (WiFi, Lock) */
-  .secondary-icons {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .timer-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
+  }
+
+  .secondary-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
     z-index: 5;
   }
-  .secondary-icon {
+  .refrigerator .secondary-icons {
     position: absolute;
-    top: 73%;
-    width: 10%;
-    transform: translate(-50%, -50%);
+    top: 5%;
+    right: 5%;
+  }
+  .secondary-icon {
+    width: 40px;
+    height: 40px;
     transition: opacity 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
   }
   .secondary-icon.active {
   }

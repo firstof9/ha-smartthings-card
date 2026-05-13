@@ -35,6 +35,25 @@ export class SmartthingsCard extends LitElement {
     return styles;
   }
 
+  public getGridOptions() {
+    return {
+      columns: 12,
+      rows: 3,
+      min_columns: 9,
+      max_columns: 12,
+      min_rows: 3,
+      max_rows: 6,
+    };
+  }
+
+  public getGridSize() {
+    return [12, 3];
+  }
+
+  public getCardSize() {
+    return 3;
+  }
+
   public setConfig(config: SmartthingsCardConfig): void {
     if (!config) {
       throw new Error('Invalid configuration');
@@ -82,6 +101,7 @@ export class SmartthingsCard extends LitElement {
         this.config.lock_entity,
         this.config.fan_entity,
         this.config.light_entity,
+        this.config.temperature_entity,
         ...(this.config.door_entities || []),
       ].filter(Boolean) as string[];
 
@@ -124,6 +144,10 @@ export class SmartthingsCard extends LitElement {
     const isPoweredOff = powerStateObj?.state === 'off';
     const timeState = (timeStateObj && !isPoweredOff) ? this._formatCountdown(timeStateObj.state) : '--:--:--';
 
+    const tempStateObj = this.config.temperature_entity ? this.hass.states[this.config.temperature_entity] : null;
+    const tempValue = tempStateObj ? Math.round(parseFloat(tempStateObj.state)).toString() : null;
+    const tempUnit = tempStateObj?.attributes.unit_of_measurement || '°C';
+
     const applianceImg = this.config.appliance_image || this._getAsset(this.config.appliance_type, 'appliance.png');
     const bgColor = this.config.background_color || '#3d3d3d';
 
@@ -138,12 +162,26 @@ export class SmartthingsCard extends LitElement {
           <img class="appliance-img" src="${applianceImg}" 
             @error=${(e: any) => e.target.style.display = 'none'} />
 
-          ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
+          ${this._renderJobStates(activeMode)}
 
           <div class="right-panel">
-            <div class="timer-row">
-              <div class="time-bg">88:88:88</div>
-              <div class="time-fg">${timeState}</div>
+            ${tempValue 
+              ? html`
+                  <div class="temp-row">
+                    <div class="temp-bg">888</div>
+                    <div class="temp-fg">
+                      <span>${tempValue.padStart(3, ' ')}</span>
+                      <span class="temp-unit">${tempUnit}</span>
+                    </div>
+                  </div>
+                ` 
+              : ''}
+            <div class="timer-section">
+              ${this._renderSecondaryIcons()}
+              <div class="timer-row">
+                <div class="time-bg">88:88:88</div>
+                <div class="time-fg">${timeState}</div>
+              </div>
             </div>
             ${this.config.appliance_type === 'microwave' ? this._renderMicrowaveControls() : ''}
           </div>
@@ -241,65 +279,65 @@ export class SmartthingsCard extends LitElement {
         { name: 'cool', left: '75%' },
       ],
       microwave: [
-        { name: 'microwave', left: '72%', icon: 'microwave' },
-        { name: 'autocook', left: '72%', icon: 'autocook' },
-        { name: 'conventional', left: '72%', icon: 'conventional' },
-        { name: 'bake', left: '72%', icon: 'bake' },
-        { name: 'bottom_heat', left: '72%', icon: 'bake' },
-        { name: 'convection_bake', left: '72%', icon: 'convection' },
-        { name: 'convection_roast', left: '72%', icon: 'convection' },
-        { name: 'broil', left: '72%', icon: 'grill' },
-        { name: 'convection_broil', left: '72%', icon: 'grill' },
-        { name: 'steam_cook', left: '72%', icon: 'steam' },
-        { name: 'steam_bake', left: '72%', icon: 'steam' },
-        { name: 'steam_roast', left: '72%', icon: 'steam' },
-        { name: 'microwave_plus_grill', left: '72%', icon: 'grill' },
-        { name: 'microwave_plus_convection', left: '72%', icon: 'convection' },
-        { name: 'microwave_plus_hot_blast', left: '72%', icon: 'hot_blast' },
-        { name: 'microwave_plus_hot_blast_2', left: '72%', icon: 'hot_blast' },
-        { name: 'slim_middle', left: '72%', icon: 'convection' },
-        { name: 'slim_strong', left: '72%', icon: 'convection' },
-        { name: 'slow_cook', left: '72%', icon: 'bake' },
-        { name: 'proof', left: '72%', icon: 'bake' },
-        { name: 'dehydrate', left: '72%', icon: 'convection' },
-        { name: 'strong_steam', left: '72%', icon: 'steam' },
-        { name: 'descale', left: '72%', icon: 'rinse' },
-        { name: 'rinse', left: '72%', icon: 'rinse' },
-        { name: 'heating', left: '72%', icon: 'conventional' },
-        { name: 'grill', left: '72%', icon: 'grill' },
-        { name: 'defrosting', left: '72%', icon: 'microwave' },
-        { name: 'warming', left: '72%', icon: 'bake' },
-        { name: 'others', left: '72%', icon: 'cooking' },
+        { name: 'microwave', left: '65%', icon: 'microwave' },
+        { name: 'autocook', left: '65%', icon: 'autocook' },
+        { name: 'conventional', left: '65%', icon: 'conventional' },
+        { name: 'bake', left: '65%', icon: 'bake' },
+        { name: 'bottom_heat', left: '65%', icon: 'bake' },
+        { name: 'convection_bake', left: '65%', icon: 'convection' },
+        { name: 'convection_roast', left: '65%', icon: 'convection' },
+        { name: 'broil', left: '65%', icon: 'grill' },
+        { name: 'convection_broil', left: '65%', icon: 'grill' },
+        { name: 'steam_cook', left: '65%', icon: 'steam' },
+        { name: 'steam_bake', left: '65%', icon: 'steam' },
+        { name: 'steam_roast', left: '65%', icon: 'steam' },
+        { name: 'microwave_plus_grill', left: '65%', icon: 'grill' },
+        { name: 'microwave_plus_convection', left: '65%', icon: 'convection' },
+        { name: 'microwave_plus_hot_blast', left: '65%', icon: 'hot_blast' },
+        { name: 'microwave_plus_hot_blast_2', left: '65%', icon: 'hot_blast' },
+        { name: 'slim_middle', left: '65%', icon: 'convection' },
+        { name: 'slim_strong', left: '65%', icon: 'convection' },
+        { name: 'slow_cook', left: '65%', icon: 'bake' },
+        { name: 'proof', left: '65%', icon: 'bake' },
+        { name: 'dehydrate', left: '65%', icon: 'convection' },
+        { name: 'strong_steam', left: '65%', icon: 'steam' },
+        { name: 'descale', left: '65%', icon: 'rinse' },
+        { name: 'rinse', left: '65%', icon: 'rinse' },
+        { name: 'heating', left: '65%', icon: 'conventional' },
+        { name: 'grill', left: '65%', icon: 'grill' },
+        { name: 'defrosting', left: '65%', icon: 'microwave' },
+        { name: 'warming', left: '65%', icon: 'bake' },
+        { name: 'others', left: '65%', icon: 'cooking' },
       ],
       oven: [
-        { name: 'conventional', left: '72%', icon: 'conventional' },
-        { name: 'bake', left: '72%', icon: 'bake' },
-        { name: 'bottom_heat', left: '72%', icon: 'bake' },
-        { name: 'convection_bake', left: '72%', icon: 'convection' },
-        { name: 'convection_roast', left: '72%', icon: 'convection' },
-        { name: 'broil', left: '72%', icon: 'grill' },
-        { name: 'convection_broil', left: '72%', icon: 'grill' },
-        { name: 'steam_cook', left: '72%', icon: 'steam' },
-        { name: 'steam_bake', left: '72%', icon: 'steam' },
-        { name: 'steam_roast', left: '72%', icon: 'steam' },
-        { name: 'microwave_plus_grill', left: '72%', icon: 'grill' },
-        { name: 'microwave_plus_convection', left: '72%', icon: 'convection' },
-        { name: 'microwave_plus_hot_blast', left: '72%', icon: 'hot_blast' },
-        { name: 'microwave_plus_hot_blast_2', left: '72%', icon: 'hot_blast' },
-        { name: 'slim_middle', left: '72%', icon: 'convection' },
-        { name: 'slim_strong', left: '72%', icon: 'convection' },
-        { name: 'slow_cook', left: '72%', icon: 'bake' },
-        { name: 'proof', left: '72%', icon: 'bake' },
-        { name: 'dehydrate', left: '72%', icon: 'convection' },
-        { name: 'strong_steam', left: '72%', icon: 'steam' },
-        { name: 'descale', left: '72%', icon: 'rinse' },
-        { name: 'rinse', left: '72%', icon: 'rinse' },
-        { name: 'heating', left: '72%', icon: 'conventional' },
-        { name: 'grill', left: '72%', icon: 'grill' },
-        { name: 'defrosting', left: '72%', icon: 'bake' },
-        { name: 'warming', left: '72%', icon: 'bake' },
-        { name: 'others', left: '72%', icon: 'cooking' },
-        { name: 'cooking', left: '72%', icon: 'conventional' },
+        { name: 'conventional', left: '65%', icon: 'conventional' },
+        { name: 'bake', left: '65%', icon: 'bake' },
+        { name: 'bottom_heat', left: '65%', icon: 'bake' },
+        { name: 'convection_bake', left: '65%', icon: 'convection' },
+        { name: 'convection_roast', left: '65%', icon: 'convection' },
+        { name: 'broil', left: '65%', icon: 'grill' },
+        { name: 'convection_broil', left: '65%', icon: 'grill' },
+        { name: 'steam_cook', left: '65%', icon: 'steam' },
+        { name: 'steam_bake', left: '65%', icon: 'steam' },
+        { name: 'steam_roast', left: '65%', icon: 'steam' },
+        { name: 'microwave_plus_grill', left: '65%', icon: 'grill' },
+        { name: 'microwave_plus_convection', left: '65%', icon: 'convection' },
+        { name: 'microwave_plus_hot_blast', left: '65%', icon: 'hot_blast' },
+        { name: 'microwave_plus_hot_blast_2', left: '65%', icon: 'hot_blast' },
+        { name: 'slim_middle', left: '65%', icon: 'convection' },
+        { name: 'slim_strong', left: '65%', icon: 'convection' },
+        { name: 'slow_cook', left: '65%', icon: 'bake' },
+        { name: 'proof', left: '65%', icon: 'bake' },
+        { name: 'dehydrate', left: '65%', icon: 'convection' },
+        { name: 'strong_steam', left: '65%', icon: 'steam' },
+        { name: 'descale', left: '65%', icon: 'rinse' },
+        { name: 'rinse', left: '65%', icon: 'rinse' },
+        { name: 'heating', left: '65%', icon: 'conventional' },
+        { name: 'grill', left: '65%', icon: 'grill' },
+        { name: 'defrosting', left: '65%', icon: 'bake' },
+        { name: 'warming', left: '65%', icon: 'bake' },
+        { name: 'others', left: '65%', icon: 'cooking' },
+        { name: 'cooking', left: '65%', icon: 'cooking' },
       ],
     };
 
@@ -308,56 +346,51 @@ export class SmartthingsCard extends LitElement {
     const currentMode = activeMode.toLowerCase();
     const isIdle = ['none', 'off', 'unknown', 'unavailable', 'idle', 'standby'].includes(currentMode);
 
-    const isMicrowave = appliance === 'microwave';
+    // Find the best matching stage
+    let activeStage = stages[appliance].find((s) => !isIdle && (currentMode.startsWith(s.name) || (s.icon && currentMode.startsWith(s.icon))));
 
+    // Fallback for idle state
+    if (!activeStage) {
+      const defaultName = appliance === 'microwave' ? 'microwave' : appliance === 'oven' ? 'conventional' : stages[appliance][0].name;
+      activeStage = stages[appliance].find((s) => s.name === defaultName) || stages[appliance][0];
+    }
+
+    const isActive = !isIdle && (currentMode.startsWith(activeStage.name) || (activeStage.icon && currentMode.startsWith(activeStage.icon)));
+    const iconBase = activeStage.icon || activeStage.name;
+    let iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
+
+    // Special handling for microwave autocook icons
+    if (appliance === 'microwave' && iconBase === 'autocook') {
+      iconName = isActive ? 'autocook.png' : 'autocook-off.png';
+    }
+
+    const isTimeline = ['dishwasher', 'washer', 'dryer'].includes(appliance);
+
+    if (isTimeline) {
+      return html`
+        <div class="job-states">
+          ${stages[appliance].map((stage) => {
+            const isActive = !isIdle && (currentMode.startsWith(stage.name) || (stage.icon && currentMode.startsWith(stage.icon)));
+            const iconBase = stage.icon || stage.name;
+            const iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
+            return html`
+              <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
+                <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
+                <div class="job-label">${isActive ? this._getStageLabel(stage.name) : ''}</div>
+              </div>
+            `;
+          })}
+        </div>
+      `;
+    }
+
+    // Centered single icon for microwave/oven
     return html`
       <div class="job-states">
-        ${stages[appliance].map((stage) => {
-          const isActive = !isIdle && (
-            currentMode === stage.name || 
-            currentMode === stage.icon ||
-            currentMode.startsWith(stage.name) || 
-            (stage.icon && currentMode.startsWith(stage.icon))
-          );
-          
-          // For microwave and oven, only render the active one if it's a shared position (77%)
-          // If none are active, pick a default to show
-          if ((isMicrowave || appliance === 'oven') && stage.left === '72%') {
-             const activeStage = stages[appliance].find(s => !isIdle && (currentMode.startsWith(s.name) || (s.icon && currentMode.startsWith(s.icon))));
-             if (activeStage) {
-                if (stage.name !== activeStage.name) return '';
-             } else {
-                // Default icons if idle
-                const defaultIcon = isMicrowave ? 'microwave' : 'conventional';
-                if (stage.name !== defaultIcon) return '';
-             }
-          }
-
-          const iconBase = stage.icon || stage.name;
-          let iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
-          
-          // Special handling for microwave autocook icons
-          if (appliance === 'microwave' && iconBase === 'autocook') {
-            iconName = isActive ? 'autocook.png' : 'autocook-off.png';
-          }
-
-          let iconSrc = this._getAsset(appliance, iconName);
-          
-          // Fallback if -on icon is missing
-          if (isActive && !iconSrc) {
-            iconSrc = this._getAsset(appliance, `${iconBase}.png`);
-          }
-
-          // If still no icon (e.g. microwave-on.png doesn't exist), return early or handle
-          if (!iconSrc) return '';
-
-          return html`
-            <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
-              <img class="job-icon" src="${iconSrc}" title="${stage.name}" @error=${this._handleImageError} />
-              ${isMicrowave || appliance === 'oven' ? html`<div class="job-label">${this._getStageLabel(stage.name)}</div>` : ''}
-            </div>
-          `;
-        })}
+        <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: 50%; top: 45%">
+          <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
+          <div class="job-label">${isActive ? this._getStageLabel(activeStage.name) : 'Idle'}</div>
+        </div>
       </div>
     `;
   }
@@ -428,7 +461,6 @@ export class SmartthingsCard extends LitElement {
               <img
                 class="secondary-icon wifi ${wifiState.state === 'on' ? 'active' : ''}"
                 src="${this._getAsset(appliance, wifiState.state === 'on' ? 'wifi-on.png' : 'wifi.png')}"
-                style="left: 32%"
               />
             `
           : ''}
@@ -437,7 +469,6 @@ export class SmartthingsCard extends LitElement {
               <img
                 class="secondary-icon lock ${lockState.state === 'on' ? 'active' : ''}"
                 src="${this._getAsset(appliance, lockState.state === 'on' ? 'lock-on.png' : 'lock.png')}"
-                style="left: 45%"
               />
             `
           : ''}
@@ -470,8 +501,8 @@ export class SmartthingsCard extends LitElement {
     const applianceImg = this.config.appliance_image || this._getAsset('refrigerator', 'appliance.png');
     const bgColor = this.config.background_color || '#3d3d3d';
 
-    const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString() : '--';
-    const frzTemp = freezerTemp ? Math.round(parseFloat(freezerTemp.state)).toString() : '--';
+    const fTemp = fridgeTemp ? Math.round(parseFloat(fridgeTemp.state)).toString().padStart(2, ' ') : '--';
+    const frzTemp = freezerTemp ? Math.round(parseFloat(freezerTemp.state)).toString().padStart(2, ' ') : '--';
 
     return html`
       <ha-card>
@@ -482,16 +513,22 @@ export class SmartthingsCard extends LitElement {
 
           <!-- Icons Layer -->
           <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
-          <div class="fridge-value-bg">88</div>
-          <div class="fridge-value">${fTemp}</div>
+          <div class="fridge-temp-box">
+            <div class="fridge-value-bg">88</div>
+            <div class="fridge-value">${fTemp}</div>
+          </div>
           
           <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
-          <div class="freezer-value-bg">88</div>
-          <div class="freezer-value">${frzTemp}</div>
+          <div class="freezer-temp-box">
+            <div class="freezer-value-bg">88</div>
+            <div class="freezer-value">${frzTemp}</div>
+          </div>
           
           <img class="icemaker-icon ${iceMaker?.state === 'on' ? 'on' : 'off'}" 
             src="${this._getAsset('refrigerator', iceMaker?.state === 'on' ? 'icemaker_on.png' : 'icemaker_off.png')}"
             @click=${this._toggleIceMaker} />
+          
+          ${this._renderSecondaryIcons()}
 
           <!-- Extra Info -->
           ${filterStatus

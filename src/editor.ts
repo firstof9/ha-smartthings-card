@@ -108,6 +108,11 @@ export class SmartthingsCardEditor extends LitElement {
         label: 'Light Control Entity (Optional)',
         selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: 'light' } },
       },
+      {
+        name: 'temperature_entity',
+        label: 'Temperature Entity (Optional)',
+        selector: { entity: { device_id: deviceId, integration: 'smartthings', domain: 'sensor' } },
+      },
     ];
 
     const footerSchema = [
@@ -231,6 +236,7 @@ export class SmartthingsCardEditor extends LitElement {
     newConfig.lock_entity = newConfig.lock_entity || findEntity(['_lock', '_child_lock']);
     newConfig.fan_entity = newConfig.fan_entity || findEntity(['_fan'], 'fan') || findEntity(['_fan_speed'], 'number');
     newConfig.light_entity = newConfig.light_entity || findEntity(['_light'], 'light');
+    newConfig.temperature_entity = newConfig.temperature_entity || findEntity(['_temperature'], 'sensor');
 
     if (type === 'refrigerator') {
       newConfig.fridge_temp_entity = newConfig.fridge_temp_entity || findEntity(['_fridge_temp', '_refrigerator_temp']);

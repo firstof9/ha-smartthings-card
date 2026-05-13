@@ -1,6 +1,6 @@
 {
   "name": "ha-smartthings-card",
-  "version": "0.1.0",
+  "version": "0.3.7",
   "description": "A custom Home Assistant Lovelace card for tracking and controlling SmartThings appliances (Refrigerator, Microwave, Washer, Dryer, Dishwasher, Oven).",
   "keywords": [
     "home-assistant",
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "lit": "^3.2.0",
+    "serialize-javascript": "^6.0.2",
     "sharp": "^0.34.5"
   }
 }
