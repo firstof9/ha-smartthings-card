@@ -90,16 +90,29 @@ export const styles = css`
   .temp-row {
     font-family: 'segment7', monospace;
     font-size: clamp(20px, 4vw, 28px);
-    color: var(--accent-color, #ff9800);
     margin-bottom: -2px;
     background: rgba(0, 0, 0, 0.2);
     padding: 0px 8px;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    display: grid;
+    place-items: center baseline;
+    line-height: 1.1;
+  }
+  .temp-bg,
+  .temp-fg {
+    grid-area: 1 / 1;
+    white-space: pre;
+  }
+  .temp-bg {
+    color: var(--divider-color, #333);
+  }
+  .temp-fg {
+    color: var(--accent-color, #ff9800);
+    z-index: 1;
     display: flex;
     align-items: baseline;
     gap: 4px;
-    line-height: 1.1;
   }
   .temp-unit {
     font-size: 0.5em;

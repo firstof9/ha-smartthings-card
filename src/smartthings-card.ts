@@ -168,8 +168,11 @@ export class SmartthingsCard extends LitElement {
             ${tempValue 
               ? html`
                   <div class="temp-row">
-                    <span>${tempValue}</span>
-                    <span class="temp-unit">${tempUnit}</span>
+                    <div class="temp-bg">888</div>
+                    <div class="temp-fg">
+                      <span>${tempValue.padStart(3, ' ')}</span>
+                      <span class="temp-unit">${tempUnit}</span>
+                    </div>
                   </div>
                 ` 
               : ''}
