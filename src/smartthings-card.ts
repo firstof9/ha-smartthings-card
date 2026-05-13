@@ -328,7 +328,7 @@ export class SmartthingsCard extends LitElement {
                 if (stage.name !== activeStage.name) return '';
              } else {
                 // Default icons if idle
-                const defaultIcon = isMicrowave ? 'autocook' : 'conventional';
+                const defaultIcon = isMicrowave ? 'microwave' : 'conventional';
                 if (stage.name !== defaultIcon) return '';
              }
           }
