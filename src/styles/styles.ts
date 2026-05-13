@@ -294,15 +294,16 @@ export const styles = css`
     transition: all 0.5s ease;
   }
   .job-label {
-    margin-top: 2px;
-    font-size: clamp(9px, 2vw, 11px);
+    margin-top: 4px;
+    font-size: clamp(8px, 1.8vw, 10px);
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     color: var(--secondary-text-color, #888);
     text-align: center;
     white-space: nowrap;
-    transition: all 0.5s ease;
+    opacity: 0.4;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .washer .job-icon-container,
   .dryer .job-icon-container,
@@ -311,11 +312,13 @@ export const styles = css`
   }
   .job-icon-container.active .job-icon {
     filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
   .job-icon-container.active .job-label {
+    opacity: 1;
     color: var(--accent-color, #ff9800);
-    text-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+    text-shadow: 0 0 10px var(--accent-color, #ff9800), 0 0 20px rgba(255, 152, 0, 0.3);
+    transform: scale(1.05);
   }
 
   /* Secondary Icons (WiFi, Lock) */
