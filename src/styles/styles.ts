@@ -447,21 +447,31 @@ export const styles = css`
   }
 
   /* Secondary Icons (WiFi, Lock) */
-  .secondary-icons {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .timer-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
+  }
+
+  .secondary-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
     z-index: 5;
   }
-  .secondary-icon {
+  .refrigerator .secondary-icons {
     position: absolute;
-    top: 73%;
-    width: 10%;
-    transform: translate(-50%, -50%);
+    top: 5%;
+    right: 5%;
+  }
+  .secondary-icon {
+    width: clamp(20px, 4vw, 24px);
+    height: auto;
     transition: opacity 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
   }
   .secondary-icon.active {
   }

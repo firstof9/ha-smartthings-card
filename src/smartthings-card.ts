@@ -176,9 +176,12 @@ export class SmartthingsCard extends LitElement {
                   </div>
                 ` 
               : ''}
-            <div class="timer-row">
-              <div class="time-bg">88:88:88</div>
-              <div class="time-fg">${timeState}</div>
+            <div class="timer-section">
+              ${this._renderSecondaryIcons()}
+              <div class="timer-row">
+                <div class="time-bg">88:88:88</div>
+                <div class="time-fg">${timeState}</div>
+              </div>
             </div>
             ${this.config.appliance_type === 'microwave' ? this._renderMicrowaveControls() : ''}
           </div>
@@ -458,7 +461,6 @@ export class SmartthingsCard extends LitElement {
               <img
                 class="secondary-icon wifi ${wifiState.state === 'on' ? 'active' : ''}"
                 src="${this._getAsset(appliance, wifiState.state === 'on' ? 'wifi-on.png' : 'wifi.png')}"
-                style="left: 32%"
               />
             `
           : ''}
@@ -467,7 +469,6 @@ export class SmartthingsCard extends LitElement {
               <img
                 class="secondary-icon lock ${lockState.state === 'on' ? 'active' : ''}"
                 src="${this._getAsset(appliance, lockState.state === 'on' ? 'lock-on.png' : 'lock.png')}"
-                style="left: 45%"
               />
             `
           : ''}
@@ -526,6 +527,8 @@ export class SmartthingsCard extends LitElement {
           <img class="icemaker-icon ${iceMaker?.state === 'on' ? 'on' : 'off'}" 
             src="${this._getAsset('refrigerator', iceMaker?.state === 'on' ? 'icemaker_on.png' : 'icemaker_off.png')}"
             @click=${this._toggleIceMaker} />
+          
+          ${this._renderSecondaryIcons()}
 
           <!-- Extra Info -->
           ${filterStatus
