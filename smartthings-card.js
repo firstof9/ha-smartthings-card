@@ -25,7 +25,7 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
 
   .appliance-img {
     position: absolute;
-    left: 3%;
+    left: 8%;
     top: 50%;
     transform: translateY(-50%);
     height: 80%;
@@ -136,6 +136,7 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
     flex-direction: column;
     gap: 4px;
     color: var(--secondary-text-color, #888);
+    z-index: 5;
   }
   .filter-label-row {
     display: flex;

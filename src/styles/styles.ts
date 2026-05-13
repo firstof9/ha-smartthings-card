@@ -27,7 +27,7 @@ export const styles = css`
 
   .appliance-img {
     position: absolute;
-    left: 3%;
+    left: 8%;
     top: 50%;
     transform: translateY(-50%);
     height: 80%;
@@ -138,6 +138,7 @@ export const styles = css`
     flex-direction: column;
     gap: 4px;
     color: var(--secondary-text-color, #888);
+    z-index: 5;
   }
   .filter-label-row {
     display: flex;
