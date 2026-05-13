@@ -2,8 +2,7 @@ import { LitElement, html, TemplateResult, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { HomeAssistant, SmartthingsCardConfig } from './types';
 import { styles } from './styles/styles';
-import { ASSETS } from './assets';
-import { formatCountdown, getFilterColor, getAsset } from './utils';
+import { formatCountdown, getFilterColor } from './utils';
 import './editor';
 import { version } from '../package.json';
 

@@ -1,10 +1,14 @@
 export interface HassEntityState {
+  entity_id: string;
   state: string;
   attributes: {
     friendly_name?: string;
     unit_of_measurement?: string;
     [key: string]: unknown;
   };
+  last_changed: string;
+  last_updated: string;
+  context: { id: string; parent_id: string | null; user_id: string | null };
 }
 
 export interface HomeAssistant {
