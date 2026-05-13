@@ -7,7 +7,8 @@ export const styles = css`
   .container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 100%;
+    min-height: 180px;
     background: #1c1c1c;
     border-radius: 12px;
     overflow: hidden;
