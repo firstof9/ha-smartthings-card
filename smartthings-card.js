@@ -307,7 +307,7 @@ function A(A,g,C,I){var t,e=arguments.length,n=e<3?g:null===I?I=Object.getOwnPro
   .washer .job-icon-container,
   .dryer .job-icon-container,
   .dishwasher .job-icon-container {
-    top: 35%;
+    top: 38%;
   }
   .job-icon-container.active .job-icon {
     filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
