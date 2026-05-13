@@ -139,34 +139,36 @@ export const styles = css`
     height: 65%;
   }
 
-  .refrigerator .fridge-value-bg,
-  .refrigerator .fridge-value,
-  .refrigerator .freezer-value-bg,
-  .refrigerator .freezer-value {
+  .refrigerator .fridge-temp-box,
+  .refrigerator .freezer-temp-box {
     position: absolute;
     top: 74%;
     transform: translate(-100%, -50%);
-    font-family: 'segment7', monospace;
-    font-size: 50px;
-    white-space: nowrap;
     z-index: 5;
     background: rgba(0, 0, 0, 0.2);
     padding: 0px 8px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    min-width: 65px;
-    text-align: right;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
+  .refrigerator .fridge-temp-box { left: 42%; }
+  .refrigerator .freezer-temp-box { left: 59%; }
+
   .refrigerator .fridge-value-bg,
-  .refrigerator .fridge-value { left: 42%; }
+  .refrigerator .fridge-value,
   .refrigerator .freezer-value-bg,
-  .refrigerator .freezer-value { left: 59%; }
+  .refrigerator .freezer-value {
+    font-family: 'segment7', monospace;
+    font-size: 50px;
+    white-space: nowrap;
+  }
 
   .refrigerator .fridge-value-bg,
   .refrigerator .freezer-value-bg { 
     color: var(--divider-color, #333);
-    border-color: transparent;
-    background: transparent;
   }
   .refrigerator .fridge-value,
   .refrigerator .freezer-value { 
