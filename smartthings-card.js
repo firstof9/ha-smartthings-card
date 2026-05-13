@@ -274,7 +274,7 @@ function A(A,g,C,I){var t,e=arguments.length,n=e<3?g:null===I?I=Object.getOwnPro
   }
    .job-icon-container {
     position: absolute;
-    top: 28%;
+    top: 25%;
     width: 18%;
     display: flex;
     flex-direction: column;
@@ -307,7 +307,7 @@ function A(A,g,C,I){var t,e=arguments.length,n=e<3?g:null===I?I=Object.getOwnPro
   .washer .job-icon-container,
   .dryer .job-icon-container,
   .dishwasher .job-icon-container {
-    top: 38%;
+    top: 35%;
   }
   .job-icon-container.active .job-icon {
     filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
