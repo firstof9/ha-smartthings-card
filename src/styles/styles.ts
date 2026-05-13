@@ -64,6 +64,11 @@ export const styles = css`
   .timer-row {
     position: relative;
     white-space: nowrap;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 5px;
   }
   .time-bg,
   .time-fg {
@@ -76,8 +81,8 @@ export const styles = css`
   }
   .time-fg {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 2px;
+    left: 10px;
     color: var(--accent-color, #ff9800);
   }
 
