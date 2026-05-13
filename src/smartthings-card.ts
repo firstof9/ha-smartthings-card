@@ -389,7 +389,7 @@ export class SmartthingsCard extends LitElement {
       heating: 'Heating',
       defrosting: 'Defrost',
       warming: 'Warming',
-      others: 'Others',
+      others: 'Cooking',
       microwave: 'Microwave',
       autocook: 'Auto',
       sensing: 'Sensing',
