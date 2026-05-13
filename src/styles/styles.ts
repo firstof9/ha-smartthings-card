@@ -71,6 +71,7 @@ export const styles = css`
     align-items: center;
     justify-content: flex-end;
     gap: 2px;
+    z-index: 5;
   }
   .timer-row {
     position: relative;
@@ -196,6 +197,7 @@ export const styles = css`
     width: 17%;
     border-radius: 4px;
     transition: all 0.4s ease;
+    z-index: 4;
   }
   .door-overlay.closed {
     background: rgba(76, 175, 80, 0.15);
@@ -325,6 +327,7 @@ export const styles = css`
     transform: translate(-50%, -50%);
     transition: all 0.5s ease;
     pointer-events: auto;
+    z-index: 5;
   }
   .job-icon {
     width: 100%;
@@ -387,6 +390,7 @@ export const styles = css`
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 5;
   }
   .secondary-icon {
     position: absolute;
@@ -404,6 +408,7 @@ export const styles = css`
     justify-content: flex-end;
     align-items: center;
     pointer-events: auto;
+    z-index: 5;
   }
   .control-group {
     display: flex;
