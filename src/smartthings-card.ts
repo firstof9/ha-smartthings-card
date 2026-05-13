@@ -162,7 +162,7 @@ export class SmartthingsCard extends LitElement {
           <img class="appliance-img" src="${applianceImg}" 
             @error=${(e: any) => e.target.style.display = 'none'} />
 
-          ${this._renderJobStates(activeMode)} ${this._renderSecondaryIcons()}
+          ${this._renderJobStates(activeMode)}
 
           <div class="right-panel">
             ${tempValue 
