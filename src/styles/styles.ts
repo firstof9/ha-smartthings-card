@@ -148,16 +148,27 @@ export const styles = css`
     font-size: 50px;
     white-space: nowrap;
     z-index: 5;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
   .refrigerator .fridge-value-bg,
-  .refrigerator .fridge-value { left: 40%; }
+  .refrigerator .fridge-value { left: 42%; }
   .refrigerator .freezer-value-bg,
-  .refrigerator .freezer-value { left: 57%; }
+  .refrigerator .freezer-value { left: 59%; }
 
   .refrigerator .fridge-value-bg,
-  .refrigerator .freezer-value-bg { color: var(--divider-color, #333); }
+  .refrigerator .freezer-value-bg { 
+    color: var(--divider-color, #333);
+    border-color: transparent;
+    background: transparent;
+  }
   .refrigerator .fridge-value,
-  .refrigerator .freezer-value { color: var(--accent-color, #ff9800); }
+  .refrigerator .freezer-value { 
+    color: var(--accent-color, #ff9800);
+    position: absolute;
+  }
 
   .filter-status {
     position: absolute;
