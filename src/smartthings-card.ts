@@ -327,56 +327,30 @@ export class SmartthingsCard extends LitElement {
     const currentMode = activeMode.toLowerCase();
     const isIdle = ['none', 'off', 'unknown', 'unavailable', 'idle', 'standby'].includes(currentMode);
 
-    const isMicrowave = appliance === 'microwave';
+    // Find the best matching stage
+    let activeStage = stages[appliance].find((s) => !isIdle && (currentMode.startsWith(s.name) || (s.icon && currentMode.startsWith(s.icon))));
+
+    // Fallback for idle state
+    if (!activeStage) {
+      const defaultName = appliance === 'microwave' ? 'microwave' : appliance === 'oven' ? 'conventional' : stages[appliance][0].name;
+      activeStage = stages[appliance].find((s) => s.name === defaultName) || stages[appliance][0];
+    }
+
+    const isActive = !isIdle && (currentMode.startsWith(activeStage.name) || (activeStage.icon && currentMode.startsWith(activeStage.icon)));
+    const iconBase = activeStage.icon || activeStage.name;
+    let iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
+
+    // Special handling for microwave autocook icons
+    if (appliance === 'microwave' && iconBase === 'autocook') {
+      iconName = isActive ? 'autocook.png' : 'autocook-off.png';
+    }
 
     return html`
       <div class="job-states">
-        ${stages[appliance].map((stage) => {
-          const isActive = !isIdle && (
-            currentMode === stage.name || 
-            currentMode === stage.icon ||
-            currentMode.startsWith(stage.name) || 
-            (stage.icon && currentMode.startsWith(stage.icon))
-          );
-          
-          // For microwave and oven, only render the active one if it's a shared position (77%)
-          // If none are active, pick a default to show
-          if ((isMicrowave || appliance === 'oven') && stage.left === '72%') {
-             const activeStage = stages[appliance].find(s => !isIdle && (currentMode.startsWith(s.name) || (s.icon && currentMode.startsWith(s.icon))));
-             if (activeStage) {
-                if (stage.name !== activeStage.name) return '';
-             } else {
-                // Default icons if idle
-                const defaultIcon = isMicrowave ? 'microwave' : 'conventional';
-                if (stage.name !== defaultIcon) return '';
-             }
-          }
-
-          const iconBase = stage.icon || stage.name;
-          let iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
-          
-          // Special handling for microwave autocook icons
-          if (appliance === 'microwave' && iconBase === 'autocook') {
-            iconName = isActive ? 'autocook.png' : 'autocook-off.png';
-          }
-
-          let iconSrc = this._getAsset(appliance, iconName);
-          
-          // Fallback if -on icon is missing
-          if (isActive && !iconSrc) {
-            iconSrc = this._getAsset(appliance, `${iconBase}.png`);
-          }
-
-          // If still no icon (e.g. microwave-on.png doesn't exist), return early or handle
-          if (!iconSrc) return '';
-
-          return html`
-            <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
-              <img class="job-icon" src="${iconSrc}" title="${stage.name}" @error=${this._handleImageError} />
-              ${isMicrowave || appliance === 'oven' ? html`<div class="job-label">${this._getStageLabel(stage.name)}</div>` : ''}
-            </div>
-          `;
-        })}
+        <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: 50%; top: 45%">
+          <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
+          <div class="job-label">${isActive ? this._getStageLabel(activeStage.name) : 'Idle'}</div>
+        </div>
       </div>
     `;
   }
