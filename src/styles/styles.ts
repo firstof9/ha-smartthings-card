@@ -360,6 +360,11 @@ export const styles = css`
   .dishwasher .job-icon-container {
     top: 38%;
   }
+  .microwave .job-icon-container,
+  .oven .job-icon-container {
+    top: 15%;
+    left: 65%;
+  }
   .job-icon-container.active::before {
     content: '';
     position: absolute;
