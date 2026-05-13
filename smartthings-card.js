@@ -28,7 +28,7 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
     left: 8%;
     top: 50%;
     transform: translateY(-50%);
-    height: 80%;
+    height: 75%;
     max-width: 45%;
     object-fit: contain;
     z-index: 2;

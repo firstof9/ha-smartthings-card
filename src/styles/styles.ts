@@ -30,7 +30,7 @@ export const styles = css`
     left: 8%;
     top: 50%;
     transform: translateY(-50%);
-    height: 80%;
+    height: 75%;
     max-width: 45%;
     object-fit: contain;
     z-index: 2;
