@@ -490,24 +490,16 @@ export class SmartthingsCard extends LitElement {
 
           <!-- Icons Layer -->
           <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
-          <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
-          ${iceMaker
-            ? html`
-                <img
-                  class="icemaker-icon ${iceMaker.state === 'on' ? 'on' : 'off'}"
-                  src="${this._getAsset('refrigerator', iceMaker.state === 'on' ? 'icemaker_on.png' : 'icemaker_off.png')}"
-                  @click=${this._toggleIceMaker}
-                  title="Ice Maker: ${iceMaker.state === 'on' ? 'On' : 'Off'}"
-                />
-              `
-            : ''}
-
-          <!-- Values Layer -->
           <div class="fridge-value-bg">88</div>
           <div class="fridge-value">${fTemp}</div>
-
+          
+          <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
           <div class="freezer-value-bg">88</div>
           <div class="freezer-value">${frzTemp}</div>
+          
+          <img class="icemaker-icon ${iceMaker?.state === 'on' ? 'on' : 'off'}" 
+            src="${this._getAsset('refrigerator', iceMaker?.state === 'on' ? 'icemaker_on.png' : 'icemaker_off.png')}"
+            @click=${this._toggleIceMaker} />
 
           <!-- Extra Info -->
           ${filterStatus

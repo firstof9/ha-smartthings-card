@@ -101,6 +101,7 @@ export const styles = css`
     width: 20%;
     transform: translate(-50%, -50%);
     image-rendering: pixelated;
+    z-index: 5;
   }
   .refrigerator .fridge-icon { left: 33%; }
   .refrigerator .freezer-icon { left: 51%; }
@@ -116,6 +117,7 @@ export const styles = css`
     font-family: 'segment7', monospace;
     font-size: 50px;
     white-space: nowrap;
+    z-index: 5;
   }
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value { left: 40%; }
