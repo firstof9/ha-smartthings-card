@@ -274,24 +274,48 @@ export const styles = css`
     height: 100%;
     pointer-events: none;
   }
-  .job-icon {
+  .job-icon-container {
     position: absolute;
     top: 23%;
     width: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    pointer-events: auto;
+  }
+  .job-icon {
+    width: 100%;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    transform: translate(-50%, -50%);
-    filter: grayscale(1);
+    filter: grayscale(1) opacity(0.3);
     transition: all 0.5s ease;
   }
-  .washer .job-icon,
-  .dryer .job-icon,
-  .dishwasher .job-icon {
+  .job-label {
+    margin-top: 2px;
+    font-size: clamp(9px, 2vw, 11px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--secondary-text-color, #888);
+    text-align: center;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+  }
+  .washer .job-icon-container,
+  .dryer .job-icon-container,
+  .dishwasher .job-icon-container {
     top: 33%;
   }
-  .job-icon.active {
-    filter: grayscale(0) drop-shadow(0 0 12px var(--accent-color, #ff9800));
-    transform: translate(-50%, -50%) scale(1.05);
+  .job-icon-container.active .job-icon {
+    filter: grayscale(0) opacity(1) drop-shadow(0 0 12px var(--accent-color, #ff9800));
+    transform: scale(1.1);
+  }
+  .job-icon-container.active .job-label {
+    color: var(--accent-color, #ff9800);
+    text-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
   }
 
   /* Secondary Icons (WiFi, Lock) */

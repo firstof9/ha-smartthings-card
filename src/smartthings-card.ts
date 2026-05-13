@@ -241,11 +241,65 @@ export class SmartthingsCard extends LitElement {
         { name: 'cool', left: '75%' },
       ],
       microwave: [
-        { name: 'microwave', left: '77%' },
-        { name: 'autocook', left: '77%' },
+        { name: 'microwave', left: '77%', icon: 'microwave' },
+        { name: 'autocook', left: '77%', icon: 'autocook' },
+        { name: 'conventional', left: '77%', icon: 'conventional' },
+        { name: 'bake', left: '77%', icon: 'bake' },
+        { name: 'bottom_heat', left: '77%', icon: 'bake' },
+        { name: 'convection_bake', left: '77%', icon: 'convection' },
+        { name: 'convection_roast', left: '77%', icon: 'convection' },
+        { name: 'broil', left: '77%', icon: 'grill' },
+        { name: 'convection_broil', left: '77%', icon: 'grill' },
+        { name: 'steam_cook', left: '77%', icon: 'steam' },
+        { name: 'steam_bake', left: '77%', icon: 'steam' },
+        { name: 'steam_roast', left: '77%', icon: 'steam' },
+        { name: 'microwave_plus_grill', left: '77%', icon: 'grill' },
+        { name: 'microwave_plus_convection', left: '77%', icon: 'convection' },
+        { name: 'microwave_plus_hot_blast', left: '77%', icon: 'hot_blast' },
+        { name: 'microwave_plus_hot_blast_2', left: '77%', icon: 'hot_blast' },
+        { name: 'slim_middle', left: '77%', icon: 'convection' },
+        { name: 'slim_strong', left: '77%', icon: 'convection' },
+        { name: 'slow_cook', left: '77%', icon: 'bake' },
+        { name: 'proof', left: '77%', icon: 'bake' },
+        { name: 'dehydrate', left: '77%', icon: 'convection' },
+        { name: 'strong_steam', left: '77%', icon: 'steam' },
+        { name: 'descale', left: '77%', icon: 'rinse' },
+        { name: 'rinse', left: '77%', icon: 'rinse' },
+        { name: 'heating', left: '77%', icon: 'conventional' },
+        { name: 'grill', left: '77%', icon: 'grill' },
+        { name: 'defrosting', left: '77%', icon: 'microwave' },
+        { name: 'warming', left: '77%', icon: 'bake' },
+        { name: 'others', left: '77%', icon: 'cooking' },
       ],
       oven: [
-        { name: 'cooking', left: '77%', icon: 'microwave' },
+        { name: 'conventional', left: '77%', icon: 'conventional' },
+        { name: 'bake', left: '77%', icon: 'bake' },
+        { name: 'bottom_heat', left: '77%', icon: 'bake' },
+        { name: 'convection_bake', left: '77%', icon: 'convection' },
+        { name: 'convection_roast', left: '77%', icon: 'convection' },
+        { name: 'broil', left: '77%', icon: 'grill' },
+        { name: 'convection_broil', left: '77%', icon: 'grill' },
+        { name: 'steam_cook', left: '77%', icon: 'steam' },
+        { name: 'steam_bake', left: '77%', icon: 'steam' },
+        { name: 'steam_roast', left: '77%', icon: 'steam' },
+        { name: 'microwave_plus_grill', left: '77%', icon: 'grill' },
+        { name: 'microwave_plus_convection', left: '77%', icon: 'convection' },
+        { name: 'microwave_plus_hot_blast', left: '77%', icon: 'hot_blast' },
+        { name: 'microwave_plus_hot_blast_2', left: '77%', icon: 'hot_blast' },
+        { name: 'slim_middle', left: '77%', icon: 'convection' },
+        { name: 'slim_strong', left: '77%', icon: 'convection' },
+        { name: 'slow_cook', left: '77%', icon: 'bake' },
+        { name: 'proof', left: '77%', icon: 'bake' },
+        { name: 'dehydrate', left: '77%', icon: 'convection' },
+        { name: 'strong_steam', left: '77%', icon: 'steam' },
+        { name: 'descale', left: '77%', icon: 'rinse' },
+        { name: 'rinse', left: '77%', icon: 'rinse' },
+        { name: 'heating', left: '77%', icon: 'conventional' },
+        { name: 'grill', left: '77%', icon: 'grill' },
+        { name: 'defrosting', left: '77%', icon: 'bake' },
+        { name: 'warming', left: '77%', icon: 'bake' },
+        { name: 'others', left: '77%', icon: 'cooking' },
+        { name: 'cooking', left: '77%', icon: 'conventional' },
       ],
     };
 
@@ -266,14 +320,16 @@ export class SmartthingsCard extends LitElement {
             (stage.icon && currentMode.startsWith(stage.icon))
           );
           
-          // For microwave, only render the active one if it's a shared position
-          // If none are active, pick 'autocook' as the default to show
-          if (isMicrowave && stage.left === '77%') {
+          // For microwave and oven, only render the active one if it's a shared position (77%)
+          // If none are active, pick a default to show
+          if ((isMicrowave || appliance === 'oven') && stage.left === '77%') {
              const activeStage = stages[appliance].find(s => !isIdle && (currentMode.startsWith(s.name) || (s.icon && currentMode.startsWith(s.icon))));
              if (activeStage) {
                 if (stage.name !== activeStage.name) return '';
-             } else if (stage.name !== 'autocook') {
-                return '';
+             } else {
+                // Default icons if idle
+                const defaultIcon = isMicrowave ? 'autocook' : 'conventional';
+                if (stage.name !== defaultIcon) return '';
              }
           }
 
@@ -296,11 +352,65 @@ export class SmartthingsCard extends LitElement {
           if (!iconSrc) return '';
 
           return html`
-            <img class="job-icon ${isActive ? 'active' : ''}" src="${iconSrc}" style="left: ${stage.left}" title="${stage.name}" />
+            <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
+              <img class="job-icon" src="${iconSrc}" title="${stage.name}" @error=${this._handleImageError} />
+              <div class="job-label">${this._getStageLabel(stage.name)}</div>
+            </div>
           `;
         })}
       </div>
     `;
+  }
+
+  private _getStageLabel(name: string): string {
+    const labels: Record<string, string> = {
+      conventional: 'Conventional',
+      bake: 'Bake',
+      bottom_heat: 'Bottom',
+      convection_bake: 'Convection',
+      convection_roast: 'Roast',
+      broil: 'Broil',
+      convection_broil: 'Broil',
+      steam_cook: 'Steam',
+      steam_bake: 'Steam',
+      steam_roast: 'Steam',
+      microwave_plus_grill: 'Grill',
+      microwave_plus_convection: 'Convection',
+      microwave_plus_hot_blast: 'HotBlast',
+      microwave_plus_hot_blast_2: 'HotBlast',
+      slim_middle: 'Slim',
+      slim_strong: 'Slim',
+      slow_cook: 'Slow',
+      proof: 'Proof',
+      dehydrate: 'Dehydrate',
+      strong_steam: 'Steam',
+      descale: 'Descale',
+      rinse: 'Rinse',
+      heating: 'Heating',
+      defrosting: 'Defrost',
+      warming: 'Warming',
+      others: 'Others',
+      microwave: 'Microwave',
+      autocook: 'Auto',
+      sensing: 'Sensing',
+      wash: 'Wash',
+      spin: 'Spin',
+      dry: 'Dry',
+      cool: 'Cool',
+      convection: 'Convection',
+      grill: 'Grill',
+      steam: 'Steam',
+      hot_blast: 'Hot Blast',
+      cooking: 'Cooking',
+    };
+
+    if (labels[name]) return labels[name];
+
+    // Fallback: capitalize and remove underscores
+    return name
+      .split('_')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   private _renderSecondaryIcons(): TemplateResult | void {
