@@ -358,6 +358,27 @@ export class SmartthingsCard extends LitElement {
       iconName = isActive ? 'autocook.png' : 'autocook-off.png';
     }
 
+    const isTimeline = ['dishwasher', 'washer', 'dryer'].includes(appliance);
+
+    if (isTimeline) {
+      return html`
+        <div class="job-states">
+          ${stages[appliance].map((stage) => {
+            const isActive = !isIdle && (currentMode.startsWith(stage.name) || (stage.icon && currentMode.startsWith(stage.icon)));
+            const iconBase = stage.icon || stage.name;
+            const iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
+            return html`
+              <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
+                <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
+                <div class="job-label">${isActive ? this._getStageLabel(stage.name) : ''}</div>
+              </div>
+            `;
+          })}
+        </div>
+      `;
+    }
+
+    // Centered single icon for microwave/oven
     return html`
       <div class="job-states">
         <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: 50%; top: 45%">
