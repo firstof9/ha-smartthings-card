@@ -145,7 +145,13 @@ export class SmartthingsCard extends LitElement {
     const timeState = (timeStateObj && !isPoweredOff) ? this._formatCountdown(timeStateObj.state) : '--:--:--';
 
     const tempStateObj = this.config.temperature_entity ? this.hass.states[this.config.temperature_entity] : null;
-    const tempValue = tempStateObj ? Math.round(parseFloat(tempStateObj.state)).toString() : null;
+    const isMicrowave = this.config.appliance_type === 'microwave';
+    const isIdle = ['none', 'off', 'unknown', 'unavailable', 'idle', 'standby'].includes(activeMode);
+    const tempValue = tempStateObj
+      ? isMicrowave && (isIdle || isPoweredOff)
+        ? '---'
+        : Math.round(parseFloat(tempStateObj.state)).toString()
+      : null;
     const tempUnit = tempStateObj?.attributes.unit_of_measurement || '°C';
 
     const applianceImg = this.config.appliance_image || this._getAsset(this.config.appliance_type, 'appliance.png');
@@ -601,10 +607,7 @@ export class SmartthingsCard extends LitElement {
     });
   }
 
-  private _handleImageError(ev: Event): void {
-    const img = ev.target as HTMLImageElement;
-    img.style.display = 'none';
-  }
+
 }
 
 (window as any).customCards = (window as any).customCards || [];
