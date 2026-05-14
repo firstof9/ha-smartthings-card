@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
+import replace from '@rollup/plugin-replace';
 
 const dev = process.env.ROLLUP_WATCH === 'true';
 
@@ -14,6 +15,12 @@ export default {
     sourcemap: dev,
   },
   plugins: [
+    replace({
+      preventAssignment: true,
+      values: {
+        '/-->/g': '/--!?>/g',
+      },
+    }),
     json(),
     resolve(),
     typescript({
