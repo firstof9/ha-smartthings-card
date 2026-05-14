@@ -34,4 +34,69 @@ describe('SmartthingsCard rendering', () => {
     // timer row should show the formatted time (or --:--:-- if mocked time doesn't match)
     expect(timeValue).toBeTruthy();
   });
+
+  it('should show --- for temperature when microwave is idle', async () => {
+    const hass = {
+      ...mockHass,
+      states: {
+        ...mockHass.states,
+        'sensor.microwave_job_state': {
+          state: 'idle',
+          attributes: {},
+        },
+        'sensor.microwave_temperature': {
+          state: '100',
+          attributes: { unit_of_measurement: '°C' },
+        },
+      },
+    };
+
+    element.setConfig({
+      type: 'custom:smartthings-card',
+      appliance_type: 'microwave',
+      job_state_entity: 'sensor.microwave_job_state',
+      temperature_entity: 'sensor.microwave_temperature',
+    });
+    element.hass = hass as any;
+
+    await element.updateComplete;
+
+    const tempValue = element.shadowRoot?.querySelector('.temp-fg span');
+    expect(tempValue?.textContent?.trim()).toBe('---');
+  });
+
+  it('should show actual temperature when microwave is cooking', async () => {
+    const hass = {
+      ...mockHass,
+      states: {
+        ...mockHass.states,
+        'sensor.microwave_job_state': {
+          state: 'cooking',
+          attributes: {},
+        },
+        'sensor.microwave_mode': {
+          state: 'microwave',
+          attributes: {},
+        },
+        'sensor.microwave_temperature': {
+          state: '100',
+          attributes: { unit_of_measurement: '°C' },
+        },
+      },
+    };
+
+    element.setConfig({
+      type: 'custom:smartthings-card',
+      appliance_type: 'microwave',
+      job_state_entity: 'sensor.microwave_job_state',
+      mode_entity: 'sensor.microwave_mode',
+      temperature_entity: 'sensor.microwave_temperature',
+    });
+    element.hass = hass as any;
+
+    await element.updateComplete;
+
+    const tempValue = element.shadowRoot?.querySelector('.temp-fg span');
+    expect(tempValue?.textContent?.trim()).toBe('100');
+  });
 });
