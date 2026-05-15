@@ -380,9 +380,11 @@ export class SmartthingsCard extends LitElement {
             const iconBase = stage.icon || stage.name;
             const iconName = isActive ? `${iconBase}-on.png` : `${iconBase}.png`;
             return html`
-              <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
-                <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
-                <div class="job-label">${isActive ? this._getStageLabel(stage.name) : ''}</div>
+              <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}"
+                ?aria-current=${isActive ? 'step' : undefined}>
+                <img class="job-icon" 
+                  src="${this._getAsset(appliance, iconName)}" 
+                  alt="${this._getStageLabel(stage.name)}" />
               </div>
             `;
           })}
@@ -393,8 +395,11 @@ export class SmartthingsCard extends LitElement {
     // Centered single icon for microwave/oven
     return html`
       <div class="job-states">
-        <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: 50%; top: 45%">
-          <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
+        <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: 50%; top: 45%"
+          ?aria-current=${isActive ? 'step' : undefined}>
+          <img class="job-icon" 
+            src="${this._getAsset(appliance, iconName)}" 
+            alt="${isActive ? this._getStageLabel(activeStage.name) : 'Idle'}" />
           <div class="job-label">${isActive ? this._getStageLabel(activeStage.name) : 'Idle'}</div>
         </div>
       </div>
