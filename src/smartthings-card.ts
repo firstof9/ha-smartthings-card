@@ -382,7 +382,6 @@ export class SmartthingsCard extends LitElement {
             return html`
               <div class="job-icon-container ${isActive ? 'active' : ''}" style="left: ${stage.left}">
                 <img class="job-icon" src="${this._getAsset(appliance, iconName)}" />
-                <div class="job-label">${isActive ? this._getStageLabel(stage.name) : ''}</div>
               </div>
             `;
           })}

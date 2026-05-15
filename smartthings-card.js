@@ -603,7 +603,6 @@ function t(t,e,i,n){var o,s=arguments.length,r=s<3?e:null===n?n=Object.getOwnPro
           ${i[e].map(t=>{const i=!o&&(n.startsWith(t.name)||t.icon&&n.startsWith(t.icon)),s=t.icon||t.name,r=i?`${s}-on.png`:`${s}.png`;return F`
               <div class="job-icon-container ${i?"active":""}" style="left: ${t.left}">
                 <img class="job-icon" src="${this._getAsset(e,r)}" />
-                <div class="job-label">${i?this._getStageLabel(t.name):""}</div>
               </div>
             `})}
         </div>
