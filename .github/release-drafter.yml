@@ -6,35 +6,44 @@ categories:
   - title: "💥 Breaking Change 💥"
     labels:
       - "breaking-change"
+    exclusive: true
   - title: "⚡ Enhancements ⚡"
     labels:
       - "enhancement"
+    exclusive: true
   - title: "✨ New Features ✨"
     labels:
       - "feature"
+    exclusive: true
   - title: "🐛 Bug Fixes 🐛"
     labels:
       - "fix"
       - "bugfix"
       - "bug"
+    exclusive: true
   - title: "🔩 Dependency 🔩"
     labels:
       - "dependencies"
     collapse-after: 3
+    exclusive: true
   - title: "🔧 Maintenance 🔧"
     labels:
       - "chore"
       - "ci"
     collapse-after: 3
+    exclusive: true
   - title: "🎓 Code Quality 🎓"
     labels:
       - "code-quality"
+    exclusive: true
   - title: "🎨 Styling 🎨"
     labels:
       - "style"
+    exclusive: true
   - title: "📝 Documentation 📝"
     labels:
       - "documentation"
+    exclusive: true
 
 template: |
   [![Downloads for this release](https://img.shields.io/github/downloads/firstof9/ha-smartthings-card/$RESOLVED_VERSION/total.svg)](https://github.com/firstof9/ha-smartthings-card/releases/$RESOLVED_VERSION)
