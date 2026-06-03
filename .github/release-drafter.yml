@@ -17,6 +17,10 @@ categories:
       - "fix"
       - "bugfix"
       - "bug"
+  - title: "🔩 Dependency 🔩"
+    labels:
+      - "dependencies"
+    collapse-after: 3
   - title: "🔧 Maintenance 🔧"
     labels:
       - "chore"
@@ -25,10 +29,6 @@ categories:
   - title: "🎓 Code Quality 🎓"
     labels:
       - "code-quality"
-  - title: "🔩 Dependency 🔩"
-    labels:
-      - "dependencies"
-    collapse-after: 3
   - title: "🎨 Styling 🎨"
     labels:
       - "style"
