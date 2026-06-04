@@ -125,6 +125,7 @@ export const styles = css`
     position: absolute;
     top: 48%;
     transform: translate(-50%, -50%);
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,8 +137,8 @@ export const styles = css`
 
   .refrigerator .fridge-icon,
   .refrigerator .freezer-icon {
-    width: 48px;
-    height: 48px;
+    width: 100%;
+    height: auto;
     image-rendering: pixelated;
     z-index: 5;
     display: block;
@@ -146,17 +147,14 @@ export const styles = css`
   }
 
   .refrigerator .icemaker-icon {
-    width: 48px;
-    height: 48px;
+    position: absolute;
+    top: 33%;
+    left: 69%;
+    width: 20%;
+    height: auto;
+    transform: translate(-50%, -50%);
     image-rendering: pixelated;
     z-index: 5;
-  }
-
-  .refrigerator .icemaker-icon {
-    position: absolute;
-    top: 31%;
-    left: 69%;
-    transform: translate(-50%, -50%);
     cursor: pointer;
   }
 
