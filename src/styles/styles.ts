@@ -120,19 +120,36 @@ export const styles = css`
   }
 
   /* Refrigerator Styles */
+  .refrigerator .fridge-temp-column,
+  .refrigerator .freezer-temp-column {
+    position: absolute;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 5;
+  }
+  .refrigerator .fridge-temp-column { left: 33%; }
+  .refrigerator .freezer-temp-column { left: 51%; }
+
   .refrigerator .fridge-icon,
   .refrigerator .freezer-icon,
   .refrigerator .icemaker-icon {
-    position: absolute;
-    top: 33%;
-    width: 20%;
-    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
     image-rendering: pixelated;
     z-index: 5;
   }
-  .refrigerator .fridge-icon { left: 33%; }
-  .refrigerator .freezer-icon { left: 51%; }
-  .refrigerator .icemaker-icon { left: 69%; cursor: pointer; }
+
+  .refrigerator .icemaker-icon {
+    position: absolute;
+    top: 31%;
+    left: 69%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
 
   .microwave .appliance-img,
   .oven .appliance-img {
@@ -169,9 +186,6 @@ export const styles = css`
 
   .refrigerator .fridge-temp-box,
   .refrigerator .freezer-temp-box {
-    position: absolute;
-    top: 74%;
-    transform: translate(-50%, -50%);
     z-index: 5;
     background: rgba(0, 0, 0, 0.2);
     padding: 0px 8px;
@@ -181,8 +195,6 @@ export const styles = css`
     place-items: center;
     line-height: 1;
   }
-  .refrigerator .fridge-temp-box { left: 33%; }
-  .refrigerator .freezer-temp-box { left: 51%; }
 
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value,

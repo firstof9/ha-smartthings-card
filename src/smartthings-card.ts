@@ -538,16 +538,20 @@ export class SmartthingsCard extends LitElement {
           </div>
 
           <!-- Icons Layer -->
-          <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
-          <div class="fridge-temp-box">
-            <div class="fridge-value-bg">88</div>
-            <div class="fridge-value">${fTemp}</div>
+          <div class="fridge-temp-column">
+            <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
+            <div class="fridge-temp-box">
+              <div class="fridge-value-bg">88</div>
+              <div class="fridge-value">${fTemp}</div>
+            </div>
           </div>
           
-          <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
-          <div class="freezer-temp-box">
-            <div class="freezer-value-bg">88</div>
-            <div class="freezer-value">${frzTemp}</div>
+          <div class="freezer-temp-column">
+            <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
+            <div class="freezer-temp-box">
+              <div class="freezer-value-bg">88</div>
+              <div class="freezer-value">${frzTemp}</div>
+            </div>
           </div>
           
           <img class="icemaker-icon ${iceMaker?.state === 'on' ? 'on' : 'off'}" 
