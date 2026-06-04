@@ -99,4 +99,42 @@ describe('SmartthingsCard rendering', () => {
     const tempValue = element.shadowRoot?.querySelector('.temp-fg span');
     expect(tempValue?.textContent?.trim()).toBe('100');
   });
+
+  it('should render the card with refrigerator configuration and column layout', async () => {
+    element.setConfig({
+      type: 'custom:smartthings-card',
+      appliance_type: 'refrigerator',
+      fridge_temp_entity: 'sensor.refrigerator_temp',
+      freezer_temp_entity: 'sensor.freezer_temp',
+    });
+    const hass = {
+      ...mockHass,
+      states: {
+        ...mockHass.states,
+        'sensor.refrigerator_temp': {
+          state: '4',
+          attributes: { unit_of_measurement: '°C' },
+        },
+        'sensor.freezer_temp': {
+          state: '-18',
+          attributes: { unit_of_measurement: '°C' },
+        },
+      },
+    };
+    element.hass = hass as any;
+
+    await element.updateComplete;
+
+    const fridgeColumn = element.shadowRoot?.querySelector('.fridge-temp-column');
+    expect(fridgeColumn).toBeTruthy();
+    
+    const fridgeIcon = fridgeColumn?.querySelector('.fridge-icon');
+    expect(fridgeIcon).toBeTruthy();
+
+    const fridgeTempBox = fridgeColumn?.querySelector('.fridge-temp-box');
+    expect(fridgeTempBox).toBeTruthy();
+
+    const freezerColumn = element.shadowRoot?.querySelector('.freezer-temp-column');
+    expect(freezerColumn).toBeTruthy();
+  });
 });

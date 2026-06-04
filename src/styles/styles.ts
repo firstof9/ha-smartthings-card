@@ -120,19 +120,43 @@ export const styles = css`
   }
 
   /* Refrigerator Styles */
+  .refrigerator .fridge-temp-column,
+  .refrigerator .freezer-temp-column {
+    position: absolute;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 5;
+  }
+  .refrigerator .fridge-temp-column { left: 33%; }
+  .refrigerator .freezer-temp-column { left: 51%; }
+
   .refrigerator .fridge-icon,
-  .refrigerator .freezer-icon,
+  .refrigerator .freezer-icon {
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    z-index: 5;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+  }
+
   .refrigerator .icemaker-icon {
     position: absolute;
     top: 33%;
+    left: 69%;
     width: 20%;
+    height: auto;
     transform: translate(-50%, -50%);
     image-rendering: pixelated;
     z-index: 5;
+    cursor: pointer;
   }
-  .refrigerator .fridge-icon { left: 33%; }
-  .refrigerator .freezer-icon { left: 51%; }
-  .refrigerator .icemaker-icon { left: 69%; cursor: pointer; }
 
   .microwave .appliance-img,
   .oven .appliance-img {
@@ -148,15 +172,27 @@ export const styles = css`
     height: 50%;
   }
 
-  .refrigerator .appliance-img {
+  .refrigerator .appliance-container {
+    position: absolute;
+    left: 4%;
+    top: 50%;
+    transform: translateY(-50%);
     height: 65%;
+    display: inline-block;
+    z-index: 2;
+  }
+
+  .refrigerator .appliance-img {
+    height: 100%;
+    width: auto;
+    display: block;
+    position: static;
+    transform: none;
+    max-width: none;
   }
 
   .refrigerator .fridge-temp-box,
   .refrigerator .freezer-temp-box {
-    position: absolute;
-    top: 74%;
-    transform: translate(-100%, -50%);
     z-index: 5;
     background: rgba(0, 0, 0, 0.2);
     padding: 0px 8px;
@@ -165,9 +201,8 @@ export const styles = css`
     display: grid;
     place-items: center;
     line-height: 1;
+    margin: 0 auto;
   }
-  .refrigerator .fridge-temp-box { left: 42%; }
-  .refrigerator .freezer-temp-box { left: 59%; }
 
   .refrigerator .fridge-value-bg,
   .refrigerator .fridge-value,
@@ -267,20 +302,24 @@ export const styles = css`
     border: 1px solid rgba(255, 82, 82, 0.7);
     box-shadow: 0 0 8px rgba(255, 82, 82, 0.3);
   }
+  .refrigerator .door-overlay {
+    left: 0;
+    width: 100%;
+  }
   /* Cooler door — top section */
   .door-overlay.door-top {
-    top: 18.5%;
-    height: 30%;
+    top: 1.54%;
+    height: 46.15%;
   }
   /* CoolSelect drawer — middle section */
   .door-overlay.door-middle {
-    top: 49.5%;
-    height: 11.5%;
+    top: 49.23%;
+    height: 17.69%;
   }
   /* Freezer drawer — bottom section */
   .door-overlay.door-bottom {
-    top: 62%;
-    height: 18%;
+    top: 68.46%;
+    height: 27.69%;
   }
 
   /* Ice Maker States */
