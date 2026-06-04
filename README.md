@@ -2,7 +2,7 @@
 
 A custom Home Assistant card for Smartthings devices.
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository=https://github.com/firstof9/ha-smartthings-card&category=Lovelace)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=firstof9&repository=ha-smartthings-card&category=plugin)
 
 ![Preview](https://raw.githubusercontent.com/firstof9/ha-smartthings-card/main/screenshots/smartthings_card.gif)
 
