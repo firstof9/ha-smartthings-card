@@ -135,7 +135,16 @@ export const styles = css`
   .refrigerator .freezer-temp-column { left: 51%; }
 
   .refrigerator .fridge-icon,
-  .refrigerator .freezer-icon,
+  .refrigerator .freezer-icon {
+    width: 48px;
+    height: 48px;
+    image-rendering: pixelated;
+    z-index: 5;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+  }
+
   .refrigerator .icemaker-icon {
     width: 48px;
     height: 48px;
@@ -194,6 +203,7 @@ export const styles = css`
     display: grid;
     place-items: center;
     line-height: 1;
+    margin: 0 auto;
   }
 
   .refrigerator .fridge-value-bg,
