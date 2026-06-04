@@ -21,6 +21,10 @@ categories:
       - "bugfix"
       - "bug"
     exclusive: true
+  - title: "🎨 Styling 🎨"
+    labels:
+      - "style"
+    exclusive: true    
   - title: "🔩 Dependency 🔩"
     labels:
       - "dependencies"
@@ -35,10 +39,6 @@ categories:
   - title: "🎓 Code Quality 🎓"
     labels:
       - "code-quality"
-    exclusive: true
-  - title: "🎨 Styling 🎨"
-    labels:
-      - "style"
     exclusive: true
   - title: "📝 Documentation 📝"
     labels:
