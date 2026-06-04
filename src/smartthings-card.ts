@@ -519,20 +519,39 @@ export class SmartthingsCard extends LitElement {
       <ha-card>
         <div class="container refrigerator">
           <div class="bg-layer" style="--bg-color-primary: ${bgColor}"></div>
-          <img class="appliance-img" src="${applianceImg}" 
-            @error=${(e: any) => e.target.style.display = 'none'} />
+          
+          <div class="appliance-container">
+            <img class="appliance-img" src="${applianceImg}" 
+              @error=${(e: any) => e.target.style.display = 'none'} />
+            ${doorData.length > 0
+              ? html`
+                  ${doorData.map(
+                    (door) => html`
+                      <div
+                        class="door-overlay door-${door.position} ${door.isOpen ? 'open' : 'closed'}"
+                        title="${door.label}: ${door.isOpen ? 'Open' : 'Closed'}"
+                      ></div>
+                    `,
+                  )}
+                `
+              : ''}
+          </div>
 
           <!-- Icons Layer -->
-          <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
-          <div class="fridge-temp-box">
-            <div class="fridge-value-bg">88</div>
-            <div class="fridge-value">${fTemp}</div>
+          <div class="fridge-temp-section">
+            <img class="fridge-icon" src="${this._getAsset('refrigerator', 'fridge-temp.png')}" />
+            <div class="fridge-temp-box">
+              <div class="fridge-value-bg">88</div>
+              <div class="fridge-value">${fTemp}</div>
+            </div>
           </div>
           
-          <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
-          <div class="freezer-temp-box">
-            <div class="freezer-value-bg">88</div>
-            <div class="freezer-value">${frzTemp}</div>
+          <div class="freezer-temp-section">
+            <img class="freezer-icon" src="${this._getAsset('refrigerator', 'freezer-temp.png')}" />
+            <div class="freezer-temp-box">
+              <div class="freezer-value-bg">88</div>
+              <div class="freezer-value">${frzTemp}</div>
+            </div>
           </div>
           
           <img class="icemaker-icon ${iceMaker?.state === 'on' ? 'on' : 'off'}" 
@@ -561,19 +580,6 @@ export class SmartthingsCard extends LitElement {
                     <span class="filter-percentage" style="color: ${this._getFilterColor(filterStatus.state)}">${filterStatus.state}%</span>
                   </div>
                 </div>
-              `
-            : ''}
-
-          ${doorData.length > 0
-            ? html`
-                ${doorData.map(
-                  (door) => html`
-                    <div
-                      class="door-overlay door-${door.position} ${door.isOpen ? 'open' : 'closed'}"
-                      title="${door.label}: ${door.isOpen ? 'Open' : 'Closed'}"
-                    ></div>
-                  `,
-                )}
               `
             : ''}
         </div>
