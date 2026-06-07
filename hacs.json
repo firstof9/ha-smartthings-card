@@ -1,6 +1,5 @@
 {
   "name": "Smartthings Card",
   "render_readme": true,
-  "filename": "smartthings-card.js",
-  "content_in_root": true
+  "filename": "smartthings-card.js"
 }
