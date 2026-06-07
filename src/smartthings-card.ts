@@ -2,7 +2,7 @@ import { LitElement, html, TemplateResult, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { HomeAssistant, SmartthingsCardConfig } from './types';
 import { styles } from './styles/styles';
-import { formatCountdown, getFilterColor } from './utils';
+import { formatCountdown, getFilterColor, getAsset } from './utils';
 import './editor';
 import { version } from '../package.json';
 
@@ -488,7 +488,7 @@ export class SmartthingsCard extends LitElement {
   }
 
   private _getAsset(appliance: string, fileName: string): string {
-    return `/local/community/ha-smartthings-card/images/${appliance}/${fileName}`;
+    return getAsset(appliance, fileName);
   }
 
   private _renderRefrigerator(): TemplateResult {
