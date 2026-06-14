@@ -275,7 +275,7 @@ export class SmartthingsCard extends LitElement {
         { name: 'dry', left: '85%', icon: 'dry-plate' },
       ],
       washer: [
-        { name: 'sensing', left: '35%' },
+        { name: 'weight_sensing', left: '35%' },
         { name: 'wash', left: '52%' },
         { name: 'rinse', left: '69%' },
         { name: 'spin', left: '86%' },
@@ -437,6 +437,7 @@ export class SmartthingsCard extends LitElement {
       microwave: 'Microwave',
       autocook: 'Auto',
       sensing: 'Sensing',
+      weight_sensing: 'Sensing',
       wash: 'Wash',
       spin: 'Spin',
       dry: 'Dry',

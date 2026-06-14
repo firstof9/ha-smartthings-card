@@ -137,4 +137,35 @@ describe('SmartthingsCard rendering', () => {
     const freezerColumn = element.shadowRoot?.querySelector('.freezer-temp-column');
     expect(freezerColumn).toBeTruthy();
   });
+
+  it('should render the card with washer configuration and weight_sensing stage active', async () => {
+    const hass = {
+      ...mockHass,
+      states: {
+        ...mockHass.states,
+        'sensor.washer_job_state': {
+          state: 'weight_sensing',
+          attributes: {},
+        },
+      },
+    };
+
+    element.setConfig({
+      type: 'custom:smartthings-card',
+      appliance_type: 'washer',
+      job_state_entity: 'sensor.washer_job_state',
+    });
+    element.hass = hass as any;
+
+    await element.updateComplete;
+
+    const card = element.shadowRoot?.querySelector('ha-card');
+    expect(card).toBeTruthy();
+
+    const activeIconContainer = element.shadowRoot?.querySelector('.job-icon-container.active');
+    expect(activeIconContainer).toBeTruthy();
+
+    const img = activeIconContainer?.querySelector('img.job-icon');
+    expect(img?.getAttribute('alt')).toBe('Sensing');
+  });
 });

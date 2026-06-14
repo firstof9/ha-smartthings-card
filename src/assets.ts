@@ -79,12 +79,12 @@ import washer_lock_on_png from '../images/washer/lock-on.png';
 import washer_lock_png from '../images/washer/lock.png';
 import washer_rinse_on_png from '../images/washer/rinse-on.png';
 import washer_rinse_png from '../images/washer/rinse.png';
-import washer_sensing_on_png from '../images/washer/sensing-on.png';
-import washer_sensing_png from '../images/washer/sensing.png';
 import washer_spin_on_png from '../images/washer/spin-on.png';
 import washer_spin_png from '../images/washer/spin.png';
 import washer_wash_on_png from '../images/washer/wash-on.png';
 import washer_wash_png from '../images/washer/wash.png';
+import washer_weight_sensing_on_png from '../images/washer/weight_sensing-on.png';
+import washer_weight_sensing_png from '../images/washer/weight_sensing.png';
 import washer_wifi_on_png from '../images/washer/wifi-on.png';
 import washer_wifi_png from '../images/washer/wifi.png';
 
@@ -181,12 +181,12 @@ export const ASSETS: Record<string, Record<string, string>> = {
     'lock.png': washer_lock_png,
     'rinse-on.png': washer_rinse_on_png,
     'rinse.png': washer_rinse_png,
-    'sensing-on.png': washer_sensing_on_png,
-    'sensing.png': washer_sensing_png,
     'spin-on.png': washer_spin_on_png,
     'spin.png': washer_spin_png,
     'wash-on.png': washer_wash_on_png,
     'wash.png': washer_wash_png,
+    'weight_sensing-on.png': washer_weight_sensing_on_png,
+    'weight_sensing.png': washer_weight_sensing_png,
     'wifi-on.png': washer_wifi_on_png,
     'wifi.png': washer_wifi_png,
   },
