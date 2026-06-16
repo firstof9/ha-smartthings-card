@@ -30,7 +30,7 @@
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.1.0",
     "@types/node": "^25.9.2",
-    "@vitest/coverage-v8": "^4.1.6",
+    "@vitest/coverage-v8": "^4.1.9",
     "jsdom": "^29.1.1",
     "rollup": "^4.61.1",
     "tslib": "^2.6.0",
